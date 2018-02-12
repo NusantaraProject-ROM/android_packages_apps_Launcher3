@@ -40,6 +40,8 @@ import static com.android.launcher3.util.SecureSettingsObserver.newNotificationS
 
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragment;
+import androidx.preference.ListPreference;
+import androidx.preference.Preference.OnPreferenceChangeListener;
 import androidx.preference.PreferenceFragment.OnPreferenceStartFragmentCallback;
 import androidx.preference.PreferenceFragment.OnPreferenceStartScreenCallback;
 import androidx.preference.PreferenceGroup.PreferencePositionCallback;
@@ -151,6 +153,17 @@ public class SettingsIcons extends SettingsActivity
                 IconDatabase.setGlobal(context, (String) val);
                 AppReloader.get(context).reload();
                 return true;
+            }
+
+            final ListPreference iconSizes = (ListPreference) findPreference(Utilities.ICON_SIZE);
+            iconSizes.setSummary(iconSizes.getEntry());
+            iconSizes.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
+                public boolean onPreferenceChange(Preference preference, Object newValue) {
+                    int index = iconSizes.findIndexOfValue((String) newValue);
+                    iconSizes.setSummary(iconSizes.getEntries()[index]);
+                    Utilities.restart(getActivity());
+                    return true;
+                }
             });
         }
 

@@ -86,4 +86,12 @@
     <!-- Lock desktop -->
     <string name="lock_desktop_title">Lock desktop</string>
     <string name="lock_desktop_summary">Prevent the homescreen from being modified</string>
+
+    <!-- Icon size -->
+    <string name="icon_size_title">Icon size</string>
+    <string name="icon_size_extra_small">Tiny</string>
+    <string name="icon_size_small">Small</string>
+    <string name="icon_size_average">Default</string>
+    <string name="icon_size_large">Large</string>
+    <string name="icon_size_extra_large">Extra large</string>
 </resources>

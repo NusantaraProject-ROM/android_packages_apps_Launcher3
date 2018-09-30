@@ -22,6 +22,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ResolveInfo;
+import android.content.pm.PackageManager;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.text.TextUtils;
@@ -43,6 +44,7 @@ import com.android.launcher3.popup.ArrowPopup;
 import com.android.launcher3.shortcuts.DeepShortcutView;
 import com.android.launcher3.userevent.nano.LauncherLogProto.Action;
 import com.android.launcher3.userevent.nano.LauncherLogProto.ControlType;
+import com.android.launcher3.util.PackageManagerHelper;
 import com.android.launcher3.widget.WidgetsFullSheet;
 
 import java.util.ArrayList;
@@ -223,7 +225,9 @@ public class OptionsPopupView extends ArrowPopup
                     "com.android.customization.picker.CustomizationPickerActivity"));
         }
         String pickerPackage = launcher.getString(R.string.wallpaper_picker_package);
-        if (!TextUtils.isEmpty(pickerPackage)) {
+        PackageManager pm = v.getContext().getPackageManager();
+        if (!TextUtils.isEmpty(pickerPackage) && PackageManagerHelper
+                .isAppInstalled(pm, pickerPackage, 0)) {
             intent.setPackage(pickerPackage);
         }
         return launcher.startActivitySafely(v, intent, null, null);

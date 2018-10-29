@@ -44,9 +44,14 @@
     <string name="show_predictions_summary">Show predictions app in app drawer</string>
 
     <!-- Gestures -->
-    <string name="pref_homescreen_dt_gestures_title">Double tap gesture</string>
-    <string name="pref_homescreen_dt_gestures_summary">Select the action of the double tap gesture on the home screen</string>
-    <string name="pref_homescreen_dt_gestures_none">None</string>
-    <string name="pref_homescreen_dt_gestures_sleep">Sleep</string>
-    <string name="pref_homescreen_dt_gestures_torch">Flashlight</string>
+    <string name="pref_homescreen_dt_gestures_title">Double tap</string>
+    <string name="pref_homescreen_dt_gestures_summary">Double tap feature</string>
+    <string name="pref_homescreen_gestures_none">None</string>
+    <string name="pref_homescreen_gestures_sleep">Screen off</string>
+    <string name="pref_homescreen_gestures_torch">Flashlight</string>
+    <string name="pref_homescreen_gestures_volume_panel">Volume panel</string>
+    <string name="pref_homescreen_gestures_clear_notifications">Clear notifications</string>
+    <string name="pref_homescreen_gestures_screenshot">Screenshot</string>
+    <string name="pref_homescreen_gestures_notifications">Notifications</string>
+    <string name="pref_homescreen_gestures_qspanel">QS panel</string>
 </resources>

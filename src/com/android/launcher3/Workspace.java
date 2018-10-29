@@ -260,7 +260,7 @@ public class Workspace extends PagedView<WorkspacePageIndicator>
     private final StatsLogManager mStatsLogManager;
 
     private GestureDetector mGestureListener;
-    private int mGestureMode;
+    private int mDoubleGestureMode;
 
     /**
      * Used to inflate the Workspace from XML.
@@ -296,13 +296,13 @@ public class Workspace extends PagedView<WorkspacePageIndicator>
 
         context.enforceCallingOrSelfPermission(
                     android.Manifest.permission.DEVICE_POWER, null);
-        mGestureMode = Integer.valueOf(
+        mDoubleGestureMode = Integer.valueOf(
                 getDevicePrefs(getContext()).getString("pref_homescreen_dt_gestures", "0"));
         mGestureListener =
                 new GestureDetector(context, new GestureDetector.SimpleOnGestureListener() {
             @Override
             public boolean onDoubleTap(MotionEvent event) {
-                triggerGesture(event);
+                Gestures(event, mDoubleGestureMode);
                 return true;
             }
         });
@@ -311,8 +311,9 @@ public class Workspace extends PagedView<WorkspacePageIndicator>
         mStatsLogManager = StatsLogManager.newInstance(context);
     }
 
-    private void triggerGesture(MotionEvent event) {
-        switch(mGestureMode) {
+    // Gestures
+    private void Gestures(MotionEvent event, int gestureType) {
+        switch(gestureType) {
             // Stock behavior
             case 0:
                 break;
@@ -324,11 +325,26 @@ public class Workspace extends PagedView<WorkspacePageIndicator>
             case 2:
                 ActionUtils.toggleCameraFlash();
                 break;
+            case 3: // Volume panel
+                ActionUtils.toggleVolumePanel(getContext());
+                break;
+            case 4: // Clear notifications
+                ActionUtils.clearAllNotifications();
+                break;
+            case 5: // Screenshot
+                ActionUtils.takeScreenshot(true);
+                break;
+            case 6: // Notifications
+                ActionUtils.toggleNotifications();
+                break;
+            case 7: // QS panel
+                ActionUtils.toggleQsPanel();
+                break;
         }
     }
 
-    public void setGestures(int mode) {
-        mGestureMode = mode;
+    public void setDoubleTapGestures(int mode) {
+        mDoubleGestureMode = mode;
     }
 
     public boolean checkDoubleTap(MotionEvent ev) {

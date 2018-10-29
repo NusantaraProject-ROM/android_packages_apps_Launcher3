@@ -153,7 +153,7 @@ public class SettingsIcons extends SettingsActivity
                 IconDatabase.setGlobal(context, (String) val);
                 AppReloader.get(context).reload();
                 return true;
-            }
+            });
 
             final ListPreference iconSizes = (ListPreference) findPreference(Utilities.ICON_SIZE);
             iconSizes.setSummary(iconSizes.getEntry());

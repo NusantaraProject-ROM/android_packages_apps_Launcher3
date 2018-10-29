@@ -137,21 +137,15 @@ public class SettingsGestures extends SettingsActivity
                 }
             }
 
-            final ListPreference gestureAction = (ListPreference) findPreference(KEY_HOMESCREEN_DT_GESTURES);
-            gestureAction.setValue(getDevicePrefs(mContext).getString(KEY_HOMESCREEN_DT_GESTURES, "0"));
-            gestureAction.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
+            final ListPreference doubletabAction = (ListPreference) findPreference(KEY_HOMESCREEN_DT_GESTURES);
+            doubletabAction.setValue(getDevicePrefs(mContext).getString(KEY_HOMESCREEN_DT_GESTURES, "0"));
+            doubletabAction.setSummary(doubletabAction.getEntry());
+            doubletabAction.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
                 public boolean onPreferenceChange(Preference preference, Object newValue) {
-                    String gestureValue = (String) newValue;
-                    getDevicePrefs(mContext).edit().putString(KEY_HOMESCREEN_DT_GESTURES, gestureValue).commit();
-                    gestureAction.setValue(gestureValue);
-                    Utilities.restart(getActivity());
-                    return true;
-                }
-            });
-
-            SwitchPreference notificationsGesture = (SwitchPreference) findPreference(Utilities.PREF_NOTIFICATIONS_GESTURE);
-            notificationsGesture.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
-                public boolean onPreferenceChange(Preference preference, Object newValue) {
+                    String dtGestureValue = (String) newValue;
+                    getDevicePrefs(mContext).edit().putString(KEY_HOMESCREEN_DT_GESTURES, dtGestureValue).commit();
+                    doubletabAction.setValue(dtGestureValue);
+                    doubletabAction.setSummary(doubletabAction.getEntry());
                     Utilities.restart(getActivity());
                     return true;
                 }

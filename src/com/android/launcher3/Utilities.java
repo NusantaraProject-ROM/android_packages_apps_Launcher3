@@ -135,6 +135,7 @@ public final class Utilities {
     public static final String GRID_ROWS = "pref_grid_rows";
     public static final String HOTSEAT_ICONS = "pref_hotseat_icons";
     public static final String ALLOW_TWO_LINE_LABELS = "pref_allow_to_line_labels";
+    public static final String PREF_NOTIFICATIONS_GESTURE = "pref_notifications_gesture";
 
     /**
      * Indicates if the device has a debug build. Should only be used to store additional info or
@@ -717,6 +718,10 @@ public final class Utilities {
 
     public static boolean shouldAllowTwoLineLabels(Context context) {
         return getPrefs(context).getBoolean(ALLOW_TWO_LINE_LABELS, false);
+    }
+
+    public static boolean useNotificationsGesture(Context context) {
+        return getPrefs(context).getBoolean(PREF_NOTIFICATIONS_GESTURE, true);
     }
 
     public static boolean isSystemApp(Context context, String pkgName) {

@@ -2591,6 +2591,10 @@ public class Launcher extends BaseDraggingActivity implements LauncherExterns,
         return super.onKeyShortcut(keyCode, event);
     }
 
+    public boolean isNotificationGestureEnabled() {
+        return Utilities.useNotificationsGesture(this);
+    }
+
     @Override
     public boolean onKeyUp(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_MENU) {

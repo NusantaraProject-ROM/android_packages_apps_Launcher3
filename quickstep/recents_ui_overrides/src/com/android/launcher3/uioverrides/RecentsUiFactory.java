@@ -165,7 +165,8 @@ public abstract class RecentsUiFactory {
         }
 
         if (FeatureFlags.PULL_DOWN_STATUS_BAR
-                && !launcher.getDeviceProfile().isMultiWindowMode) {
+                && !launcher.getDeviceProfile().isMultiWindowMode()
+                && launcher.isNotificationGestureEnabled()) {
             list.add(new StatusBarTouchController(launcher));
         }
 

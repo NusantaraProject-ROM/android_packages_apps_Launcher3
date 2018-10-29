@@ -38,6 +38,7 @@ import com.android.launcher3.util.SecureSettingsObserver;
 import com.android.launcher3.settings.SettingsActivity;
 
 import androidx.preference.ListPreference;
+import androidx.preference.SwitchPreference;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragment;
 import androidx.preference.Preference.OnPreferenceChangeListener;
@@ -143,6 +144,14 @@ public class SettingsGestures extends SettingsActivity
                     String gestureValue = (String) newValue;
                     getDevicePrefs(mContext).edit().putString(KEY_HOMESCREEN_DT_GESTURES, gestureValue).commit();
                     gestureAction.setValue(gestureValue);
+                    Utilities.restart(getActivity());
+                    return true;
+                }
+            });
+
+            SwitchPreference notificationsGesture = (SwitchPreference) findPreference(Utilities.PREF_NOTIFICATIONS_GESTURE);
+            notificationsGesture.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
+                public boolean onPreferenceChange(Preference preference, Object newValue) {
                     Utilities.restart(getActivity());
                     return true;
                 }

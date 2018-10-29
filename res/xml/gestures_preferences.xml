@@ -16,4 +16,11 @@
         android:entryValues="@array/pref_homescreen_dt_gestures_values"
         android:defaultValue=""
         android:persistent="false" />
+
+    <SwitchPreference
+        android:key="pref_notifications_gesture"
+        android:title="@string/pref_notifications_gesture_title"
+        android:summary="@string/pref_notifications_gesture_summary"
+        android:defaultValue="true"
+        android:persistent="true"/>
 </androidx.preference.PreferenceScreen> 

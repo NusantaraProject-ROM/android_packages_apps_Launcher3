@@ -54,4 +54,8 @@
     <string name="pref_homescreen_gestures_screenshot">Screenshot</string>
     <string name="pref_homescreen_gestures_notifications">Notifications</string>
     <string name="pref_homescreen_gestures_qspanel">QS panel</string>
+
+    <!-- Show searchbar -->
+    <string name="show_searchbar_title">Show search bar</string>
+    <string name="show_searchbar_summary">Show the search bar on the home screen</string>
 </resources>

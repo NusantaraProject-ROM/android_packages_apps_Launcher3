@@ -24,6 +24,7 @@ import android.annotation.TargetApi;
 import android.app.ActivityManager;
 import android.app.KeyguardManager;
 import android.app.Person;
+import android.app.ProgressDialog;
 import android.app.WallpaperManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -56,6 +57,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 import android.os.PowerManager;
+import android.os.SystemClock;
 import android.os.TransactionTooLargeException;
 import android.text.Spannable;
 import android.text.SpannableString;
@@ -72,6 +74,7 @@ import android.view.animation.Interpolator;
 import com.android.launcher3.LauncherModel;
 import com.android.launcher3.compat.LauncherAppsCompat;
 import com.android.launcher3.compat.ShortcutConfigActivityInfo;
+import com.android.launcher3.config.FeatureFlags;
 import com.android.launcher3.dragndrop.FolderAdaptiveIcon;
 import com.android.launcher3.graphics.RotationMode;
 import com.android.launcher3.graphics.TintedDrawableSpan;
@@ -136,6 +139,7 @@ public final class Utilities {
     public static final String HOTSEAT_ICONS = "pref_hotseat_icons";
     public static final String ALLOW_TWO_LINE_LABELS = "pref_allow_to_line_labels";
     public static final String PREF_NOTIFICATIONS_GESTURE = "pref_notifications_gesture";
+    public static final String DESKTOP_SHOW_QSB = "pref_qsb_show";
 
     /**
      * Indicates if the device has a debug build. Should only be used to store additional info or
@@ -724,6 +728,10 @@ public final class Utilities {
         return getPrefs(context).getBoolean(PREF_NOTIFICATIONS_GESTURE, true);
     }
 
+    public static boolean showQsbWidget(Context context) {
+         return getPrefs(context).getBoolean(DESKTOP_SHOW_QSB, FeatureFlags.QSB_ON_FIRST_SCREEN);
+    }
+
     public static boolean isSystemApp(Context context, String pkgName) {
         return isSystemApp(context, null, pkgName);
     }
@@ -779,6 +787,7 @@ public final class Utilities {
     }
 
     public static void restart(final Context context) {
+        ProgressDialog.show(context, null, context.getString(R.string.state_loading), true, false);
         MODEL_EXECUTOR.execute(() -> {
             try {
                 Thread.sleep(WAIT_BEFORE_RESTART);

@@ -21,6 +21,8 @@ import android.app.Fragment;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.provider.Settings;
@@ -41,6 +43,7 @@ import com.aosp.launcher.AospUtils;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragment;
 import androidx.preference.ListPreference;
+import androidx.preference.SwitchPreference;
 import androidx.preference.Preference.OnPreferenceChangeListener;
 import androidx.preference.PreferenceFragment.OnPreferenceStartFragmentCallback;
 import androidx.preference.PreferenceFragment.OnPreferenceStartScreenCallback;
@@ -165,6 +168,14 @@ public class SettingsHomescreen extends SettingsActivity
                 public boolean onPreferenceChange(Preference preference, Object newValue) {
                     int index = hotseatColumns.findIndexOfValue((String) newValue);
                     hotseatColumns.setSummary(hotseatColumns.getEntries()[index]);
+                    Utilities.restart(getActivity());
+                    return true;
+                }
+            });
+
+            Preference showQsbWidget = findPreference(Utilities.DESKTOP_SHOW_QSB);
+            showQsbWidget.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+                public boolean onPreferenceChange(Preference preference, Object newValue) {
                     Utilities.restart(getActivity());
                     return true;
                 }

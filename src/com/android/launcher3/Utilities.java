@@ -146,6 +146,7 @@ public final class Utilities {
     public static final String MINUS_ONE_KEY = "pref_enable_minus_one";
     public static final String KEY_APP_SUGGESTION = "pref_show_predictions";
     public static final String KEY_DOCK_SEARCH = "pref_dock_search";
+    public static final String SEARCH_PACKAGE = "com.google.android.googlequicksearchbox";
 
     /**
      * Indicates if the device has a debug build. Should only be used to store additional info or

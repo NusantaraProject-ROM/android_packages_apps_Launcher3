@@ -7,6 +7,7 @@ import static com.android.launcher3.icons.ShadowGenerator.BLUR_FACTOR;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
@@ -35,6 +36,9 @@ public class BaseIconFactory implements AutoCloseable {
     private static final int DEFAULT_WRAPPER_BACKGROUND = Color.WHITE;
     static final boolean ATLEAST_OREO = Build.VERSION.SDK_INT >= Build.VERSION_CODES.O;
     static final boolean ATLEAST_P = Build.VERSION.SDK_INT >= Build.VERSION_CODES.P;
+
+    public static final String KEY_PREF_LEGACY_ICON_MASK = "pref_legacy_icon_mask";
+    public static final String SHARED_PREFERENCES_KEY = "com.android.launcher3.prefs";
 
     private static final float ICON_BADGE_SCALE = 0.444f;
 
@@ -215,7 +219,7 @@ public class BaseIconFactory implements AutoCloseable {
         }
         float scale = 1f;
 
-        if (shrinkNonAdaptiveIcons && ATLEAST_OREO) {
+        if (shrinkNonAdaptiveIcons && ATLEAST_OREO && !forceLegacyIconMask(mContext)) {
             if (mWrapperIcon == null) {
                 mWrapperIcon = mContext.getDrawable(R.drawable.adaptive_icon_drawable_wrapper)
                         .mutate();
@@ -339,6 +343,16 @@ public class BaseIconFactory implements AutoCloseable {
      */
     public static int getBadgeSizeForIconSize(int iconSize) {
         return (int) (ICON_BADGE_SCALE * iconSize);
+    }
+
+    private static boolean forceLegacyIconMask(Context context) {
+        SharedPreferences prefs = getPrefs(context.getApplicationContext());
+        return prefs.getBoolean(KEY_PREF_LEGACY_ICON_MASK, false);
+    }
+
+    public static SharedPreferences getPrefs(Context context) {
+        return context.getSharedPreferences(
+                SHARED_PREFERENCES_KEY, Context.MODE_PRIVATE);
     }
 
     /**

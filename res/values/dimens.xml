@@ -217,11 +217,11 @@
     <dimen name="popup_item_divider_height">0.5dp</dimen>
     <dimen name="swipe_helper_falsing_threshold">70dp</dimen>
 
-<!-- Overview -->
+    <!-- Overview -->
     <dimen name="options_menu_icon_size">24dp</dimen>
     <dimen name="options_menu_thumb_size">32dp</dimen>
 
-<!-- Snackbar -->
+    <!-- Snackbar -->
     <dimen name="snackbar_height">48dp</dimen>
     <dimen name="snackbar_content_height">32dp</dimen>
     <dimen name="snackbar_padding">8dp</dimen>
@@ -232,7 +232,8 @@
     <dimen name="snackbar_min_text_size">12sp</dimen>
     <dimen name="snackbar_max_text_size">14sp</dimen>
 
-<!-- Theming related -->
+    <!-- Theming related -->
     <dimen name="default_dialog_corner_radius">8dp</dimen>
-
+    <dimen name="dynamic_grid_hotseat_top_padding_hidden_bottom_qsb">8dp</dimen>
+    <dimen name="dynamic_grid_hotseat_bottom_padding_hidden_bottom_qsb">0dp</dimen>
 </resources>

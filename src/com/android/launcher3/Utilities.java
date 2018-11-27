@@ -140,6 +140,7 @@ public final class Utilities {
     public static final String ALLOW_TWO_LINE_LABELS = "pref_allow_to_line_labels";
     public static final String PREF_NOTIFICATIONS_GESTURE = "pref_notifications_gesture";
     public static final String DESKTOP_SHOW_QSB = "pref_qsb_show";
+    public static final String BOTTOM_SEARCH_BAR_KEY = "pref_bottom_search_bar";
 
     /**
      * Indicates if the device has a debug build. Should only be used to store additional info or
@@ -650,6 +651,10 @@ public final class Utilities {
 
     public static boolean isDesktopLocked(Context context) {
         return getPrefs(context).getBoolean(LOCK_DESKTOP_KEY, false);
+    }
+
+    public static boolean isBottomSearchBarVisible(Context context) {
+        return getPrefs(context).getBoolean(BOTTOM_SEARCH_BAR_KEY, true);
     }
 
     public static float getIconSizeModifier(Context context) {

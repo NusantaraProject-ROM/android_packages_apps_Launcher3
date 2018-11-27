@@ -119,4 +119,8 @@
     <!-- Show QSB on homescreen -->
     <string name="pref_qsb_show_title">At A Glance</string>
     <string name="pref_qsb_show_summary">Show At A Glance</string>
+
+    <!-- Hide/Show search bars -->
+    <string name="bottom_search_bar_title">Show search bar on bottom</string>
+    <string name="bottom_search_bar_summary">Show the search bar on the Dock</string>
 </resources>

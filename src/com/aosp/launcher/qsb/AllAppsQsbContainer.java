@@ -308,6 +308,7 @@ public class AllAppsQsbContainer extends FrameLayout implements Insettable, OnCl
         View view = (View) getParent();
         setTranslationX((float) ((view.getPaddingLeft() + ((((view.getWidth() - view.getPaddingLeft()) - view.getPaddingRight()) - (right - left)) / 2)) - left));
         offsetTopAndBottom((int) mFixedTranslationY);
+        setVisibility(Utilities.isBottomSearchBarVisible(getContext()) ? View.VISIBLE : View.GONE);
     }
 
     public int getMeasuredWidth(int width, DeviceProfile dp) {

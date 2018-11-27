@@ -180,6 +180,14 @@ public class SettingsHomescreen extends SettingsActivity
                     return true;
                 }
             });
+
+            SwitchPreference showBottomSearchBar = (SwitchPreference) findPreference(Utilities.BOTTOM_SEARCH_BAR_KEY);
+            showBottomSearchBar.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
+                public boolean onPreferenceChange(Preference preference, Object newValue) {
+                    Utilities.restart(getActivity());
+                    return true;
+                }
+            });
         }
 
         @Override

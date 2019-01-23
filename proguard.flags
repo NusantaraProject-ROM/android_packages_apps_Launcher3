@@ -55,3 +55,6 @@
 -dontwarn android.view.**
 -dontwarn android.os.**
 -dontwarn android.graphics.**
+-keep class com.android.launcher3.trust.** {
+ *;
+}

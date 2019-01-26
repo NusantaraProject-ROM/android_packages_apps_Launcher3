@@ -42,6 +42,7 @@ import com.android.launcher3.ItemInfo;
 import com.android.launcher3.Launcher;
 import com.android.launcher3.R;
 import com.android.launcher3.WorkspaceItemInfo;
+import com.android.launcher3.Utilities;
 import com.android.launcher3.accessibility.DragViewStateAnnouncer;
 import com.android.launcher3.testing.TestProtocol;
 import com.android.launcher3.util.ItemInfoMatcher;
@@ -227,6 +228,9 @@ public class DragController implements DragDriver.EventListener, TouchController
     }
 
     private void callOnDragStart() {
+        if (Utilities.isDesktopLocked(mLauncher.getApplicationContext())) {
+            return;
+        }
         if (mOptions.preDragCondition != null) {
             mOptions.preDragCondition.onPreDragEnd(mDragObject, true /* dragStarted*/);
         }
@@ -542,6 +546,10 @@ public class DragController implements DragDriver.EventListener, TouchController
      * Call this from a drag source view.
      */
     public boolean onControllerTouchEvent(MotionEvent ev) {
+        if (Utilities.isDesktopLocked(mLauncher.getApplicationContext())) {
+            cancelDrag();
+            return false;
+        }
         if (mDragDriver == null || mOptions == null || mOptions.isAccessibleDrag) {
             return false;
         }

@@ -63,6 +63,7 @@ import com.android.launcher3.OnAlarmListener;
 import com.android.launcher3.PagedView;
 import com.android.launcher3.R;
 import com.android.launcher3.ShortcutAndWidgetContainer;
+import com.android.launcher3.Utilities;
 import com.android.launcher3.Workspace;
 import com.android.launcher3.Workspace.ItemOperator;
 import com.android.launcher3.WorkspaceItemInfo;
@@ -1338,7 +1339,11 @@ public class Folder extends AbstractFloatingView implements ClipPathView, DragSo
     public void onFocusChange(View v, boolean hasFocus) {
         if (v == mFolderName) {
             if (hasFocus) {
-                startEditingFolderName();
+                if (Utilities.isDesktopLocked(v.getContext())) {
+                    v.clearFocus();
+                } else {
+                    startEditingFolderName();
+                }
             } else {
                 mFolderName.dispatchBackKey();
             }

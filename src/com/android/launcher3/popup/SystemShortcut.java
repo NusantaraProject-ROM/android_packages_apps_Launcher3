@@ -8,6 +8,7 @@ import android.graphics.Rect;
 import android.graphics.drawable.Icon;
 import android.os.Handler;
 import android.os.Looper;
+import android.net.Uri;
 import android.view.View;
 import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.ImageView;
@@ -15,6 +16,7 @@ import android.widget.TextView;
 
 import com.android.launcher3.AbstractFloatingView;
 import com.android.launcher3.BaseDraggingActivity;
+import com.android.launcher3.Utilities;
 import com.android.launcher3.ItemInfo;
 import com.android.launcher3.Launcher;
 import com.android.launcher3.LauncherSettings;
@@ -202,6 +204,40 @@ public abstract class SystemShortcut<T extends BaseDraggingActivity>
                         itemInfo.getTargetComponent().getPackageName());
                 activity.startActivitySafely(view, intent, itemInfo, null);
                 AbstractFloatingView.closeAllOpenViews(activity);
+            };
+        }
+    }
+
+    public static class Uninstall extends SystemShortcut {
+        public Uninstall() {
+            super(R.drawable.ic_uninstall_no_shadow, R.string.uninstall_drop_target_label);
+        }
+
+        @Override
+        public View.OnClickListener getOnClickListener(
+                BaseDraggingActivity activity, ItemInfo itemInfo) {
+            // Get application information.
+            String packageName = itemInfo.getTargetComponent().getPackageName();
+            boolean isSystemApp = Utilities.isSystemApp(activity.getApplicationContext(),
+                    packageName);
+            // Do not show the uninstall action if it's a system app.
+            if (isSystemApp) {
+                return null;
+            }
+            // Create uninstall action.
+            return createOnClickListener(activity, packageName);
+        }
+
+        private View.OnClickListener createOnClickListener(
+                BaseDraggingActivity activity, String packageName) {
+            return view -> {
+                // Dismiss drop down.
+                dismissTaskMenuView(activity);
+                // Send intent to uninstall package.
+                Intent intent = new Intent(Intent.ACTION_UNINSTALL_PACKAGE);
+                intent.setData(Uri.parse("package:" + packageName));
+                intent.putExtra(Intent.EXTRA_RETURN_RESULT, true);
+                activity.startActivity(intent);
             };
         }
     }

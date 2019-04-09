@@ -27,8 +27,14 @@ import android.app.Person;
 import android.app.WallpaperManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.ComponentName;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ApplicationInfo;
 import android.content.pm.LauncherActivityInfo;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.pm.ResolveInfo;
 import android.content.pm.ShortcutInfo;
 import android.content.res.Resources;
@@ -711,6 +717,47 @@ public final class Utilities {
 
     public static boolean shouldAllowTwoLineLabels(Context context) {
         return getPrefs(context).getBoolean(ALLOW_TWO_LINE_LABELS, false);
+    }
+
+    public static boolean isSystemApp(Context context, String pkgName) {
+        return isSystemApp(context, null, pkgName);
+    }
+
+    public static boolean isSystemApp(Context context, Intent intent) {
+        return isSystemApp(context, intent, null);
+    }
+
+    public static boolean isSystemApp(Context context, Intent intent, String pkgName) {
+        PackageManager pm = context.getPackageManager();
+        String packageName = null;
+        // If the intent is not null, let's get the package name from the intent.
+        if (intent != null) {
+            ComponentName cn = intent.getComponent();
+            if (cn == null) {
+                ResolveInfo info = pm.resolveActivity(intent, PackageManager.MATCH_DEFAULT_ONLY);
+                if ((info != null) && (info.activityInfo != null)) {
+                    packageName = info.activityInfo.packageName;
+                }
+            } else {
+                packageName = cn.getPackageName();
+            }
+        }
+        // Otherwise we have the package name passed from the method.
+        else {
+            packageName = pkgName;
+        }
+        // Check if the provided package is a system app.
+        if (packageName != null) {
+            try {
+                PackageInfo info = pm.getPackageInfo(packageName, 0);
+                return (info != null) && (info.applicationInfo != null) &&
+                        ((info.applicationInfo.flags & ApplicationInfo.FLAG_SYSTEM) != 0);
+            } catch (NameNotFoundException e) {
+                return false;
+            }
+        } else {
+            return false;
+        }
     }
 
     private static int getIconCount(Context context, String preferenceName, int preferenceFallback) {

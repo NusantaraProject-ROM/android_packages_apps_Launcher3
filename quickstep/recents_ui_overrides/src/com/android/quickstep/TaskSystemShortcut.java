@@ -386,5 +386,4 @@ public class TaskSystemShortcut<T extends SystemShortcut> extends SystemShortcut
         }
         return killed;
     }
-
 }

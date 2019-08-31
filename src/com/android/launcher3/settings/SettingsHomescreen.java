@@ -47,6 +47,7 @@ import androidx.preference.PreferenceFragment.OnPreferenceStartFragmentCallback;
 import androidx.preference.PreferenceFragment.OnPreferenceStartScreenCallback;
 import androidx.preference.PreferenceGroup.PreferencePositionCallback;
 import androidx.preference.PreferenceScreen;
+import androidx.preference.SwitchPreference;
 import androidx.recyclerview.widget.RecyclerView;
 
 /**
@@ -155,6 +156,13 @@ public class SettingsHomescreen extends Activity
                     doubletabAction.setValue(dtGestureValue);
                     doubletabAction.setSummary(doubletabAction.getEntry());
                     Utilities.restart(mContext);
+                    return true;
+                }
+            });
+            SwitchPreference quickspaceNowPlaying = (SwitchPreference) findPreference(Utilities.KEY_SHOW_QUICKSPACE_NOWPLAYING);
+            quickspaceNowPlaying.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
+                public boolean onPreferenceChange(Preference preference, Object newValue) {
+                    LauncherAppState.getInstanceNoCreate().setNeedsRestart();
                     return true;
                 }
             });

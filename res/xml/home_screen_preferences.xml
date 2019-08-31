@@ -13,6 +13,21 @@
         android:summary="@string/pref_show_google_now_summary"
         android:title="@string/title_show_google_app"/>
 
+    <SwitchPreference
+        android:key="pref_show_quickspace"
+        android:title="@string/show_quickspace_title"
+        android:summary="@string/show_quickspace_summary"
+        android:defaultValue="true"
+        android:persistent="true"/>
+
+    <SwitchPreference
+        android:dependency="pref_show_quickspace"
+        android:key="pref_quickspace_np"
+        android:summary="@string/quickspace_now_playing_summary"
+        android:title="@string/quickspace_now_playing_title"
+        android:defaultValue="true"
+        android:persistent="true" />
+
     <ListPreference
         android:key="pref_homescreen_dt_gestures"
         android:title="@string/pref_homescreen_dt_gestures_title"

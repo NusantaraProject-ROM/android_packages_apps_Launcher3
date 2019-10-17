@@ -70,4 +70,8 @@
     <string name="msg_minus_one_on_right">When you swipe right from main Home screen</string>
     <string name="pref_show_google_now_summary" translatable="false">@string/msg_minus_one_on_left</string>
 
+    <!-- Icon packs -->
+    <string name="iconPackPackageDefault" translatable="false">""</string>
+    <string name="icon_pack">Icon pack</string>
+    <string name="icon_pack_summary">Select a custom icon pack</string>
 </resources>

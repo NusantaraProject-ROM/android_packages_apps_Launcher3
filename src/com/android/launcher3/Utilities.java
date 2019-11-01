@@ -51,7 +51,6 @@ import android.os.Looper;
 import android.os.Message;
 import android.os.PowerManager;
 import android.os.TransactionTooLargeException;
-import android.provider.Settings;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.TextUtils;
@@ -131,11 +130,6 @@ public final class Utilities {
      */
     public static final boolean IS_DEBUG_DEVICE = false;
 
-    public static boolean isDevelopersOptionsEnabled(Context context) {
-        return Settings.Global.getInt(context.getApplicationContext().getContentResolver(),
-                        Settings.Global.DEVELOPMENT_SETTINGS_ENABLED, 0) != 0;
-    }
-
     // An intent extra to indicate the horizontal scroll of the wallpaper.
     public static final String EXTRA_WALLPAPER_OFFSET = "com.android.launcher3.WALLPAPER_OFFSET";
     public static final String EXTRA_WALLPAPER_FLAVOR = "com.android.launcher3.WALLPAPER_FLAVOR";
@@ -149,12 +143,6 @@ public final class Utilities {
 
     public static boolean isPropertyEnabled(String propertyName) {
         return Log.isLoggable(propertyName, Log.VERBOSE);
-    }
-
-    public static boolean existsStyleWallpapers(Context context) {
-        ResolveInfo ri = context.getPackageManager().resolveActivity(
-                PackageManagerHelper.getStyleWallpapersIntent(context), 0);
-        return ri != null;
     }
 
     /**

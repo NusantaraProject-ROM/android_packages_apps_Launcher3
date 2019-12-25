@@ -239,9 +239,9 @@ public class Launcher extends BaseDraggingActivity implements LauncherExterns,
     private DropTargetBar mDropTargetBar;
 
     // Main container view for the all apps screen.
-    @Thunk
+    @Thunk 
     AllAppsContainerView mAppsView;
-    AllAppsTransitionController mAllAppsController;
+    public AllAppsTransitionController mAllAppsController;
 
     // Scrim view for the all apps and overview state.
     @Thunk
@@ -574,7 +574,7 @@ public class Launcher extends BaseDraggingActivity implements LauncherExterns,
         }
     }
 
-    private LauncherCallbacks mLauncherCallbacks;
+    public LauncherCallbacks mLauncherCallbacks;
 
     /**
      * Call this after onCreate to set or clear overlay.

@@ -103,6 +103,7 @@ public final class Utilities {
 
     private static final String TAG = "Launcher.Utilities";
     public static final String KEY_APP_SUGGESTION = "pref_show_predictions";
+    public static final String KEY_SHOW_SEARCHBAR = "pref_show_quickspace";
 
     private static final Pattern sTrimPattern =
             Pattern.compile("^[\\s|\\p{javaSpaceChar}]*(.*)[\\s|\\p{javaSpaceChar}]*$");
@@ -134,10 +135,6 @@ public final class Utilities {
      * Set on a motion event dispatched from the nav bar. See {@link MotionEvent#setEdgeFlags(int)}.
      */
     public static final int EDGE_NAV_BAR = 1 << 8;
-
-    private static final long WAIT_BEFORE_RESTART = 250;
-
-    public static final String KEY_SHOW_SEARCHBAR = "pref_show_searchbar";
 
     /**
      * Indicates if the device has a debug build. Should only be used to store additional info or

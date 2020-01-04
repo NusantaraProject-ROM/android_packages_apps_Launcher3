@@ -136,6 +136,8 @@ public final class Utilities {
     public static final String DESKTOP_SHOW_QUICKSPACE = "pref_show_quickspace";
     public static final String KEY_SHOW_ALT_QUICKSPACE = "pref_show_alt_quickspace";
     public static final String KEY_SHOW_QUICKSPACE_PSONALITY = "pref_quickspace_psonality";
+    public static final String KEY_DOCK_SEARCH = "pref_dock_search";
+    public static final String SEARCH_PACKAGE = "com.google.android.googlequicksearchbox";
 
     /**
      * Set on a motion event dispatched from the nav bar. See {@link MotionEvent#setEdgeFlags(int)}.
@@ -804,5 +806,18 @@ public final class Utilities {
 
     public static boolean isQuickspacePersonalityEnabled(Context context) {
         return getPrefs(context).getBoolean(KEY_SHOW_QUICKSPACE_PSONALITY, true);
+    }
+
+    public static boolean showQSB(Context context, Launcher launcher) {
+        LauncherAppState appState = LauncherAppState.getInstance(launcher);
+        if (!appState.isSearchAppAvailable()) {
+            return false;
+        }
+        return isQSBEnabled(context);
+    }
+
+    public static boolean isQSBEnabled(Context context) {
+        SharedPreferences prefs = getPrefs(context.getApplicationContext());
+        return prefs.getBoolean(KEY_DOCK_SEARCH, true);
     }
 }

@@ -197,4 +197,8 @@
         <item>Winner Winner ....?</item>
         <item>rm -rf \/</item>
     </string-array>
+
+    <!-- Show dock search widget -->
+    <string name="dock_search_title">Google search bar</string>
+    <string name="dock_search_summary">Show search bar in the bottom dock</string>
 </resources>

@@ -46,6 +46,8 @@ import com.android.launcher3.util.SecureSettingsObserver;
 import com.android.launcher3.util.SimpleBroadcastReceiver;
 import com.android.launcher3.widget.custom.CustomWidgetManager;
 
+import com.android.internal.util.nad.NadUtils;
+
 public class LauncherAppState {
 
     public static final String ACTION_FORCE_ROLOAD = "force-reload-launcher";
@@ -70,6 +72,7 @@ public class LauncherAppState {
     private HomeKeyWatcher mHomeKeyListener = null;
     private boolean mNeedsRestart;
     private boolean mIsCalendarAppAvailable;
+    private boolean mIsSearchAppAvailable;
 
     public static LauncherAppState getInstance(final Context context) {
         return INSTANCE.get(context);
@@ -87,6 +90,8 @@ public class LauncherAppState {
         this(context, LauncherFiles.APP_ICONS_DB);
 
         mModelChangeReceiver = new SimpleBroadcastReceiver(mModel::onBroadcastIntent);
+
+        setSearchAppAvailable(NadUtils.isPackageInstalled(context, Utilities.SEARCH_PACKAGE, true));
 
         mContext.getSystemService(LauncherApps.class).registerCallback(mModel);
         mModelChangeReceiver.register(mContext, Intent.ACTION_LOCALE_CHANGED,
@@ -244,5 +249,13 @@ public class LauncherAppState {
 
     public boolean isCalendarAppAvailable() {
         return mIsCalendarAppAvailable;
+    }
+
+    public void setSearchAppAvailable(boolean available) {
+        mIsSearchAppAvailable = available;
+    }
+
+    public boolean isSearchAppAvailable() {
+        return mIsSearchAppAvailable;
     }
 }

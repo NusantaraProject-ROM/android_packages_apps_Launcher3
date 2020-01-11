@@ -65,4 +65,12 @@
             android:targetClass="com.android.launcher3.settings.SettingsMisc" />
     </Preference>
 
+    <com.aosp.launcher.settings.ReloadingListPreference
+        android:key="pref_icon_pack"
+        android:title="@string/app_info_icon_pack"
+        android:summary="%s"
+        android:defaultValue=""
+        android:persistent="true" />
+
+    </PreferenceCategory>
 </androidx.preference.PreferenceScreen>

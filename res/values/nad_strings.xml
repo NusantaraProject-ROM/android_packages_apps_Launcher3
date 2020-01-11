@@ -13,7 +13,7 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-<resources>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
     <!-- General -->
     <string name="settings_title">Settings</string>
@@ -84,4 +84,7 @@
     <string name="app_info_last_update" translatable="false">Last update</string>
     <string name="app_info_version" translatable="false">Version</string>
     <string name="app_info_more" translatable="false">More</string>
+
+    <!-- Preference default value -->
+    <string name="pref_value_default" translatable="false">Default</string>
 </resources>

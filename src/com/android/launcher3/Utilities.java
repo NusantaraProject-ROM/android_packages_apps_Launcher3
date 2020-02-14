@@ -144,6 +144,7 @@ public final class Utilities {
     public static final String PREF_NOTIFICATIONS_GESTURE = "pref_notifications_gesture";
     public static final String DESKTOP_SHOW_QSB = "pref_qsb_show";
     public static final String MINUS_ONE_KEY = "pref_enable_minus_one";
+    public static final String KEY_APP_SUGGESTION = "pref_show_predictions";
 
     /**
      * Indicates if the device has a debug build. Should only be used to store additional info or

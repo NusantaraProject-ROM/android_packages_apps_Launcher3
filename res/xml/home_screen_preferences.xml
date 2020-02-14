@@ -22,6 +22,13 @@
         android:title="@string/allow_two_line_labels_title" />
 
     <SwitchPreference
+        android:key="pref_show_predictions"
+        android:title="@string/show_predictions_title"
+        android:summary="@string/show_predictions_summary"
+        android:defaultValue="true"
+        android:persistent="true"/>
+
+    <SwitchPreference
         android:defaultValue="true"
         android:key="pref_qsb_show"
         android:persistent="true"

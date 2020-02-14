@@ -39,4 +39,7 @@
     <string name="trust_apps_info_hidden">Hidden apps and their widgets are hidden from the drawer</string>
     <string name="trust_apps_info_protected">Protected apps require authentication to be opened from the launcher</string>
 
+    <!-- Show app predictions -->
+    <string name="show_predictions_title">Show predictions app</string>
+    <string name="show_predictions_summary">Show predictions app in app drawer</string>
 </resources>

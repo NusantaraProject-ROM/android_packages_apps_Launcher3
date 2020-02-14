@@ -101,6 +101,7 @@ import static com.android.launcher3.util.Executors.MODEL_EXECUTOR;
 public final class Utilities {
 
     private static final String TAG = "Launcher.Utilities";
+    public static final String KEY_APP_SUGGESTION = "pref_show_predictions";
 
     private static final Pattern sTrimPattern =
             Pattern.compile("^[\\s|\\p{javaSpaceChar}]*(.*)[\\s|\\p{javaSpaceChar}]*$");

@@ -63,6 +63,13 @@
         android:persistent="true" />
 
     <SwitchPreference
+        android:key="pref_allowSwipeDownClearAll"
+        android:title="@string/allow_swipe_down_clearall_title"
+        android:summary="@string/allow_swipe_down_clearall_desc"
+        android:defaultValue="@bool/allow_swipe_down_clearall"
+        android:persistent="true" />
+
+    <SwitchPreference
         android:key="pref_show_workspace_grad"
         android:title="@string/workspace_gradient_title"
         android:summary="@string/workspace_gradient_summary"
@@ -75,8 +82,6 @@
         android:summary="@string/hotseat_gradient_summary"
         android:defaultValue="true"
         android:persistent="true"/>
-
-    </PreferenceCategory>
 
     <androidx.preference.PreferenceScreen
         android:key="pref_developer_options"

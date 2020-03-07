@@ -17,6 +17,7 @@
 package com.android.launcher3;
 
 import static com.android.launcher3.ItemInfoWithIcon.FLAG_ICON_BADGED;
+import static com.android.launcher3.util.Executors.MODEL_EXECUTOR;
 
 import android.animation.ValueAnimator;
 import android.annotation.TargetApi;
@@ -639,7 +640,7 @@ public final class Utilities {
     }
 
     public static void restart(final Context context) {
-        new LooperExecutor(LauncherModel.getWorkerLooper()).execute(() -> {
+        MODEL_EXECUTOR.execute(() -> {
             try {
                 Thread.sleep(WAIT_BEFORE_RESTART);
             } catch (Exception ignored) {

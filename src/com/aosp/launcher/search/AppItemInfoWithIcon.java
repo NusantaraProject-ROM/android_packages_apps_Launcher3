@@ -17,10 +17,10 @@ package com.aosp.launcher.search;
 
 import android.content.Intent;
 
-import com.android.launcher3.ItemInfoWithIcon;
+import com.android.launcher3.WorkspaceItemInfo;
 import com.android.launcher3.util.ComponentKey;
 
-public class AppItemInfoWithIcon extends ItemInfoWithIcon {
+public class AppItemInfoWithIcon extends WorkspaceItemInfo {
 
     public Intent mIntent;
 

@@ -41,6 +41,7 @@ import android.view.ViewConfiguration;
 import android.view.ViewDebug;
 import android.widget.TextView;
 
+import com.android.launcher3.Utilities;
 import com.android.launcher3.Launcher.OnResumeCallback;
 import com.android.launcher3.accessibility.LauncherAccessibilityDelegate;
 import com.android.launcher3.dot.DotInfo;
@@ -197,6 +198,14 @@ public class BubbleTextView extends TextView implements ItemInfoUpdateReceiver, 
         setEllipsize(TruncateAt.END);
         setAccessibilityDelegate(mActivity.getAccessibilityDelegate());
         setTextAlpha(1f);
+
+        if (Utilities.shouldAllowTwoLineLabels(getContext())) {
+            setSingleLine(false);
+            setLines(2);
+        } else {
+            setSingleLine(true);
+            setLines(1);
+        }
     }
 
     @Override

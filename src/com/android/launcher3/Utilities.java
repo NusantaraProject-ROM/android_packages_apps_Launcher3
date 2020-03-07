@@ -128,6 +128,7 @@ public final class Utilities {
     public static final String GRID_COLUMNS = "pref_grid_columns";
     public static final String GRID_ROWS = "pref_grid_rows";
     public static final String HOTSEAT_ICONS = "pref_hotseat_icons";
+    public static final String ALLOW_TWO_LINE_LABELS = "pref_allow_to_line_labels";
 
     /**
      * Indicates if the device has a debug build. Should only be used to store additional info or
@@ -706,6 +707,10 @@ public final class Utilities {
 
     public static int getHotseatIcons(Context context, int fallback) {
         return getIconCount(context, HOTSEAT_ICONS, fallback);
+    }
+
+    public static boolean shouldAllowTwoLineLabels(Context context) {
+        return getPrefs(context).getBoolean(ALLOW_TWO_LINE_LABELS, false);
     }
 
     private static int getIconCount(Context context, String preferenceName, int preferenceFallback) {

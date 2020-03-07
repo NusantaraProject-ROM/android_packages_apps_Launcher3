@@ -42,15 +42,15 @@
     </Preference>
 
     <Preference
-        android:key="app_drawer"
-        android:title="@string/app_drawer_category_title"
-        android:summary="@string/app_drawer_category_summary"
-        android:icon="@drawable/appdrawer"
+        android:key="gestures"
+        android:title="@string/gestures_category_title"
+        android:summary="@string/gestures_category_summary"
+        android:icon="@drawable/gestures_preference"
         android:layout="@layout/settings_layout">
     <intent
             android:action="android.settings.APPLICATION_DETAILS_SETTINGS"
             android:targetPackage="com.android.launcher3"
-            android:targetClass="com.android.launcher3.settings.SettingsAppDrawer" />
+            android:targetClass="com.android.launcher3.settings.SettingsGestures" />
     </Preference>
 
     <Preference
@@ -64,13 +64,4 @@
             android:targetPackage="com.android.launcher3"
             android:targetClass="com.android.launcher3.settings.SettingsMisc" />
     </Preference>
-
-    <com.aosp.launcher.settings.ReloadingListPreference
-        android:key="pref_icon_pack"
-        android:title="@string/app_info_icon_pack"
-        android:summary="%s"
-        android:defaultValue=""
-        android:persistent="true" />
-
-    </PreferenceCategory>
 </androidx.preference.PreferenceScreen>

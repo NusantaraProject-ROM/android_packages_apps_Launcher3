@@ -46,7 +46,7 @@ import androidx.recyclerview.widget.RecyclerView;
 /**
  * Settings activity for Launcher. Currently implements the following setting: Allow rotation
  */
-public class SettingsAppDrawer extends Activity
+public class SettingsGestures extends Activity
         implements OnPreferenceStartFragmentCallback, OnPreferenceStartScreenCallback,
         SharedPreferences.OnSharedPreferenceChangeListener{
 
@@ -59,7 +59,7 @@ public class SettingsAppDrawer extends Activity
     protected void onCreate(final Bundle bundle) {
         super.onCreate(bundle);
         if (bundle == null) {
-            getFragmentManager().beginTransaction().replace(android.R.id.content, new AppDrawerSettingsFragment()).commit();
+            getFragmentManager().beginTransaction().replace(android.R.id.content, new GesturesSettingsFragment()).commit();
         }
         Utilities.getPrefs(getApplicationContext()).registerOnSharedPreferenceChangeListener(this);
     }
@@ -97,13 +97,13 @@ public class SettingsAppDrawer extends Activity
     public boolean onPreferenceStartScreen(PreferenceFragment caller, PreferenceScreen pref) {
         Bundle args = new Bundle();
         args.putString(PreferenceFragment.ARG_PREFERENCE_ROOT, pref.getKey());
-        return startFragment(getString(R.string.app_drawer_category_title), args, pref.getKey());
+        return startFragment(getString(R.string.gestures_category_title), args, pref.getKey());
     }
 
     /**
      * This fragment shows the launcher preferences.
      */
-    public static class AppDrawerSettingsFragment extends PreferenceFragment {
+    public static class GesturesSettingsFragment extends PreferenceFragment {
 
         private String mHighLightKey;
         private boolean mPreferenceHighlighted = false;
@@ -117,7 +117,7 @@ public class SettingsAppDrawer extends Activity
             }
 
             getPreferenceManager().setSharedPreferencesName(LauncherFiles.SHARED_PREFERENCES_KEY);
-            setPreferencesFromResource(R.xml.app_drawer_preferences, rootKey);
+            setPreferencesFromResource(R.xml.gestures_preferences, rootKey);
 
             PreferenceScreen screen = getPreferenceScreen();
             for (int i = screen.getPreferenceCount() - 1; i >= 0; i--) {

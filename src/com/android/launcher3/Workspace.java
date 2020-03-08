@@ -31,6 +31,7 @@ import static com.android.launcher3.logging.LoggerUtils.newContainerTarget;
 import static com.android.launcher3.logging.StatsLogManager.LAUNCHER_STATE_HOME;
 import static com.android.launcher3.logging.StatsLogManager.LauncherEvent.LAUNCHER_SWIPELEFT;
 import static com.android.launcher3.logging.StatsLogManager.LauncherEvent.LAUNCHER_SWIPERIGHT;
+import static com.android.launcher3.Utilities.getDevicePrefs;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -259,6 +260,7 @@ public class Workspace extends PagedView<WorkspacePageIndicator>
     private final StatsLogManager mStatsLogManager;
 
     private GestureDetector mGestureListener;
+    private int mGestureMode;
 
     /**
      * Used to inflate the Workspace from XML.
@@ -294,17 +296,39 @@ public class Workspace extends PagedView<WorkspacePageIndicator>
 
         context.enforceCallingOrSelfPermission(
                     android.Manifest.permission.DEVICE_POWER, null);
+        mGestureMode = Integer.valueOf(
+                getDevicePrefs(getContext()).getString("pref_homescreen_dt_gestures", "0"));
         mGestureListener =
                 new GestureDetector(context, new GestureDetector.SimpleOnGestureListener() {
             @Override
             public boolean onDoubleTap(MotionEvent event) {
-                ActionUtils.switchScreenOff(context);
+                triggerGesture(event);
                 return true;
             }
         });
 
         setOnTouchListener(new WorkspaceTouchListener(mLauncher, this));
         mStatsLogManager = StatsLogManager.newInstance(context);
+    }
+
+    private void triggerGesture(MotionEvent event) {
+        switch(mGestureMode) {
+            // Stock behavior
+            case 0:
+                break;
+            // Sleep
+            case 1:
+                ActionUtils.switchScreenOff(getContext());
+                break;
+            // Flashlight
+            case 2:
+                ActionUtils.toggleCameraFlash();
+                break;
+        }
+    }
+
+    public void setGestures(int mode) {
+        mGestureMode = mode;
     }
 
     public boolean checkDoubleTap(MotionEvent ev) {

@@ -16,6 +16,8 @@
 
 package com.android.launcher3.settings;
 
+import static com.android.launcher3.Utilities.getDevicePrefs;
+
 import android.app.Activity;
 import android.app.DialogFragment;
 import android.app.Fragment;
@@ -35,8 +37,10 @@ import com.android.launcher3.config.FeatureFlags;
 import com.android.launcher3.uioverrides.plugins.PluginManagerWrapper;
 import com.android.launcher3.util.SecureSettingsObserver;
 
+import androidx.preference.ListPreference;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragment;
+import androidx.preference.Preference.OnPreferenceChangeListener;
 import androidx.preference.PreferenceFragment.OnPreferenceStartFragmentCallback;
 import androidx.preference.PreferenceFragment.OnPreferenceStartScreenCallback;
 import androidx.preference.PreferenceGroup.PreferencePositionCallback;
@@ -54,6 +58,7 @@ public class SettingsHomescreen extends Activity
     public static final String EXTRA_SHOW_FRAGMENT_ARGS = ":settings:show_fragment_args";
     private static final int DELAY_HIGHLIGHT_DURATION_MILLIS = 600;
     public static final String SAVE_HIGHLIGHTED_KEY = "android:preference_highlighted";
+    public static final String KEY_HOMESCREEN_DT_GESTURES = "pref_homescreen_dt_gestures";
 
     @Override
     protected void onCreate(final Bundle bundle) {
@@ -105,12 +110,16 @@ public class SettingsHomescreen extends Activity
      */
     public static class HomescreenSettingsFragment extends PreferenceFragment {
 
+        private Context mContext;
+
         private String mHighLightKey;
         private boolean mPreferenceHighlighted = false;
 
         @Override
         public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
             final Bundle args = getArguments();
+
+            mContext = getActivity();
 
             if (savedInstanceState != null) {
                 mPreferenceHighlighted = savedInstanceState.getBoolean(SAVE_HIGHLIGHTED_KEY);
@@ -126,6 +135,18 @@ public class SettingsHomescreen extends Activity
                     screen.removePreference(preference);
                 }
             }
+
+            final ListPreference gestureAction = (ListPreference) findPreference(KEY_HOMESCREEN_DT_GESTURES);
+            gestureAction.setValue(getDevicePrefs(mContext).getString(KEY_HOMESCREEN_DT_GESTURES, "0"));
+            gestureAction.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
+                public boolean onPreferenceChange(Preference preference, Object newValue) {
+                    String gestureValue = (String) newValue;
+                    getDevicePrefs(mContext).edit().putString(KEY_HOMESCREEN_DT_GESTURES, gestureValue).commit();
+                    gestureAction.setValue(gestureValue);
+                    Utilities.restart(mContext);
+                    return true;
+                }
+            });
         }
 
         @Override

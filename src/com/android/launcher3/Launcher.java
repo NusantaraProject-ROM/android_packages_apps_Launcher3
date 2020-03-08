@@ -65,6 +65,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.IntentSender;
 import android.content.SharedPreferences;
+import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.database.sqlite.SQLiteDatabase;
@@ -202,7 +203,8 @@ import java.util.stream.Stream;
  * Default launcher application.
  */
 public class Launcher extends StatefulActivity<LauncherState> implements LauncherExterns,
-        Callbacks, InvariantDeviceProfile.OnIDPChangeListener, PluginListener<OverlayPlugin> {
+        Callbacks, InvariantDeviceProfile.OnIDPChangeListener, OnSharedPreferenceChangeListener, 
+        PluginListener<OverlayPlugin> {
     public static final String TAG = "Launcher";
 
     public static final ActivityTracker<Launcher> ACTIVITY_TRACKER = new ActivityTracker<>();
@@ -247,6 +249,8 @@ public class Launcher extends StatefulActivity<LauncherState> implements Launche
     public static final String ON_START_EVT = "Launcher.onStart";
     public static final String ON_RESUME_EVT = "Launcher.onResume";
     public static final String ON_NEW_INTENT_EVT = "Launcher.onNewIntent";
+
+    private static final String KEY_HOMESCREEN_DT_GESTURES = "pref_homescreen_dt_gestures";
 
     private StateManager<LauncherState> mStateManager;
 
@@ -2733,5 +2737,12 @@ public class Launcher extends StatefulActivity<LauncherState> implements Launche
     public interface OnResumeCallback {
 
         void onLauncherResume();
+    }
+
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+      if (KEY_HOMESCREEN_DT_GESTURES.equals(key)) {
+          mWorkspace.setGestures(Integer.valueOf(sharedPreferences.getString("KEY_HOMESCREEN_DT_GESTURES", "0")));
+        }
     }
 }

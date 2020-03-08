@@ -80,6 +80,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.IntentSender;
 import android.content.SharedPreferences;
+import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.database.sqlite.SQLiteDatabase;
@@ -236,7 +237,7 @@ import java.util.stream.Stream;
  */
 public class Launcher extends StatefulActivity<LauncherState> implements LauncherExterns,
         Callbacks, InvariantDeviceProfile.OnIDPChangeListener, PluginListener<OverlayPlugin>,
-        LauncherOverlayCallbacks {
+        LauncherOverlayCallbacks, OnSharedPreferenceChangeListener {
     public static final String TAG = "Launcher";
 
     public static final ActivityTracker<Launcher> ACTIVITY_TRACKER = new ActivityTracker<>();
@@ -281,6 +282,7 @@ public class Launcher extends StatefulActivity<LauncherState> implements Launche
     public static final String ON_START_EVT = "Launcher.onStart";
     public static final String ON_RESUME_EVT = "Launcher.onResume";
     public static final String ON_NEW_INTENT_EVT = "Launcher.onNewIntent";
+    public static final String KEY_HOMESCREEN_DT_GESTURES = "pref_homescreen_dt_gestures";
 
     private StateManager<LauncherState> mStateManager;
 
@@ -3141,5 +3143,13 @@ public class Launcher extends StatefulActivity<LauncherState> implements Launche
     @Nullable
     public ArrowPopup<?> getOptionsPopup() {
         return findViewById(R.id.popup_container);
+    }
+
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+        if (KEY_HOMESCREEN_DT_GESTURES.equals(key)) {
+            mWorkspace.setDoubleTapGestures(Integer.valueOf(sharedPreferences.getString(
+                "KEY_HOMESCREEN_DT_GESTURES", "0")));
+        }
     }
 }

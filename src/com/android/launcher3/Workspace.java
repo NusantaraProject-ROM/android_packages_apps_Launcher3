@@ -25,6 +25,7 @@ import static com.android.launcher3.LauncherState.NORMAL;
 import static com.android.launcher3.LauncherState.SPRING_LOADED;
 import static com.android.launcher3.config.FeatureFlags.ADAPTIVE_ICON_WINDOW_ANIM;
 import static com.android.launcher3.dragndrop.DragLayer.ALPHA_INDEX_OVERLAY;
+import static com.android.launcher3.Utilities.getDevicePrefs;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -253,6 +254,7 @@ public class Workspace extends PagedView<WorkspacePageIndicator>
     private final WorkspaceStateTransitionAnimation mStateTransitionAnimation;
 
     private GestureDetector mGestureListener;
+    private int mGestureMode;
 
     /**
      * Used to inflate the Workspace from XML.
@@ -288,16 +290,38 @@ public class Workspace extends PagedView<WorkspacePageIndicator>
 
         context.enforceCallingOrSelfPermission(
                     android.Manifest.permission.DEVICE_POWER, null);
+        mGestureMode = Integer.valueOf(
+                getDevicePrefs(getContext()).getString("pref_homescreen_dt_gestures", "0"));
         mGestureListener =
                 new GestureDetector(context, new GestureDetector.SimpleOnGestureListener() {
             @Override
             public boolean onDoubleTap(MotionEvent event) {
-                ActionUtils.switchScreenOff(context);
+                triggerGesture(event);
                 return true;
             }
         });
 
         setOnTouchListener(new WorkspaceTouchListener(mLauncher, this));
+    }
+
+    private void triggerGesture(MotionEvent event) {
+        switch(mGestureMode) {
+            // Stock behavior
+            case 0:
+                break;
+            // Sleep
+            case 1:
+                ActionUtils.switchScreenOff(getContext());
+                break;
+            // Flashlight
+            case 2:
+                ActionUtils.toggleCameraFlash();
+                break;
+        }
+    }
+
+    public void setGestures(int mode) {
+        mGestureMode = mode;
     }
 
     public boolean checkDoubleTap(MotionEvent ev) {

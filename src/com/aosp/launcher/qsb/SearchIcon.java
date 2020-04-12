@@ -54,6 +54,7 @@ public class SearchIcon extends View implements SharedPreferences.OnSharedPrefer
 
     public SearchIcon(Context context, AttributeSet attributeSet, int res) {
         super(context, attributeSet, res);
+        if (shouldHideDockSearch()) return;
         updatePrefs(Utilities.getDevicePrefs(context));
         setOnClickListener(new View.OnClickListener() {
             @Override
@@ -150,5 +151,9 @@ public class SearchIcon extends View implements SharedPreferences.OnSharedPrefer
             int height = getHeight() / 2;
             mIcon.setBounds(width - intrinsicWidth, height - intrinsicHeight, width + intrinsicWidth, height + intrinsicHeight);
         }
+    }
+
+    private boolean shouldHideDockSearch() {
+        return !Utilities.isQSBEnabled(getContext());
     }
 }

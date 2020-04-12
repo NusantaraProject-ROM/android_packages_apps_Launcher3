@@ -125,9 +125,13 @@ public class AllAppsQsbContainer extends FrameLayout implements Insettable, OnCl
         mResult = 0;
         mAlpha = 0;
         mLauncher = (AospLauncher) Launcher.getLauncher(context);
-        setOnClickListener(this);
+        if (!shouldHideDockSearch()) {
+            setOnClickListener(this);
+        }
         mIsMainColorDark = Themes.getAttrBoolean(mLauncher, R.attr.isMainColorDark);
-        mMarginAdjusting = mContext.getResources().getDimensionPixelSize(R.dimen.qsb_margin_top_adjusting);
+        mMarginAdjusting = mContext.getResources().getDimensionPixelSize(Utilities.isQSBEnabled(context)
+            ? R.dimen.qsb_margin_top_adjusting
+            : R.dimen.qsb_margin_top_qsbhidden);
         mSearchIconWidth = getResources().getDimensionPixelSize(R.dimen.qsb_mic_width);
         mShadowMargin = getResources().getDimensionPixelSize(R.dimen.qsb_shadow_margin);
         mIsRtl = Utilities.isRtl(getResources());
@@ -271,6 +275,8 @@ public class AllAppsQsbContainer extends FrameLayout implements Insettable, OnCl
     }
 
     private void initDefaultQsb() {
+        if (shouldHideDockSearch())
+            return;
         setOnClickListener(null);
         mDefaultQsb = (DefaultQsbContainer) mLauncher.getLayoutInflater().inflate(R.layout.search_container_all_apps, this, false);
         mDefaultQsb.mAllAppsQsb = this;
@@ -350,6 +356,8 @@ public class AllAppsQsbContainer extends FrameLayout implements Insettable, OnCl
 
     @Override
     public void draw(Canvas canvas) {
+        if (shouldHideDockSearch())
+            return;
         if (mAlpha > 0) {
             if (mQsbScroll == null) {
                 mQsbScroll = createBitmap(mContext.getResources().getDimension(
@@ -410,7 +418,7 @@ public class AllAppsQsbContainer extends FrameLayout implements Insettable, OnCl
         Bitmap pill;
         TypedValue edgeRadius = new TypedValue();
         getResources().getValue(R.dimen.qsbRadius, edgeRadius, true);
-        Log.d("QSB createPill() ", "radius = " + getResources().getDimensionPixelSize(R.dimen.qsbEdgeRadius));
+        Log.d("QSB createPill() ", "radius = " + getResources().getDimensionPixelSize(R.dimen.qsbRadius));
         if (getResources().getDimensionPixelSize(R.dimen.qsbRadius) > 20) {
             pill = builder.createPill(heightSpec, height);
         } else {
@@ -526,5 +534,9 @@ public class AllAppsQsbContainer extends FrameLayout implements Insettable, OnCl
 
     public void setKeepDefaultView(boolean canKeep) {
         mKeepDefaultQsb = canKeep;
+    }
+
+    private boolean shouldHideDockSearch() {
+        return !Utilities.showQSB(getContext(), mLauncher);
     }
 }

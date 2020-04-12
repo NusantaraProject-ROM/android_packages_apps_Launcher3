@@ -123,4 +123,8 @@
     <!-- Show app predictions -->
     <string name="show_predictions_title">Show predictions app</string>
     <string name="show_predictions_summary">Show predictions app in app drawer</string>
+
+    <!-- Show dock search widget -->
+    <string name="dock_search_title">Show google search bar</string>
+    <string name="dock_search_summary">Search bar on home screen and in app drawer</string>
 </resources>

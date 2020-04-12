@@ -145,6 +145,7 @@ public final class Utilities {
     public static final String DESKTOP_SHOW_QSB = "pref_qsb_show";
     public static final String MINUS_ONE_KEY = "pref_enable_minus_one";
     public static final String KEY_APP_SUGGESTION = "pref_show_predictions";
+    public static final String KEY_DOCK_SEARCH = "pref_dock_search";
 
     /**
      * Indicates if the device has a debug build. Should only be used to store additional info or
@@ -655,6 +656,19 @@ public final class Utilities {
 
     public static boolean isDesktopLocked(Context context) {
         return getPrefs(context).getBoolean(LOCK_DESKTOP_KEY, false);
+    }
+
+    public static boolean showQSB(Context context, Launcher launcher) {
+        LauncherAppState appState = LauncherAppState.getInstance(launcher);
+        if (!appState.isSearchAppAvailable()) {
+            return false;
+        }
+        return isQSBEnabled(context);
+    }
+
+    public static boolean isQSBEnabled(Context context) {
+        SharedPreferences prefs = getPrefs(context.getApplicationContext());
+        return prefs.getBoolean(KEY_DOCK_SEARCH, true);
     }
 
     public static float getIconSizeModifier(Context context) {

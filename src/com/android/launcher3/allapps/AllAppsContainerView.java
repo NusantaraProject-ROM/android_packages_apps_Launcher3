@@ -340,11 +340,8 @@ public class AllAppsContainerView extends SpringRelativeLayout implements DragSo
         setLayoutParams(mlp);
 
         InsettableFrameLayout.dispatchInsets(this, insets);
-        if (!shouldHideDockSearch()) {
-            // Avoid showing the apps view partially in the scrim when QSB is hidden in the dock
-            mLauncher.getAllAppsController()
-                    .setScrollRangeDelta(mSearchUiManager.getScrollRangeDelta(insets));
-        }
+        mLauncher.getAllAppsController()
+                .setScrollRangeDelta(mSearchUiManager.getScrollRangeDelta(insets));
     }
 
     private boolean shouldHideDockSearch() {

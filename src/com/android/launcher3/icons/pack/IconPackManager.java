@@ -1,4 +1,4 @@
-package com.aosp.launcher.icons.pack;
+package com.android.launcher3.icons.pack;
 
 import static com.android.launcher3.util.Executors.MODEL_EXECUTOR;
 
@@ -23,8 +23,8 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-import com.aosp.launcher.customization.IconDatabase;
-import com.aosp.launcher.util.AppReloader;
+import com.android.launcher3.customization.IconDatabase;
+import com.android.launcher3.util.AppReloader;
 
 public class IconPackManager extends BroadcastReceiver {
     private static final String TAG = "IconPackManager";

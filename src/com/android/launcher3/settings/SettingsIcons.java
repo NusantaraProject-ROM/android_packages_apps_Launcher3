@@ -16,7 +16,6 @@
 
 package com.android.launcher3.settings;
 
-import android.app.Activity;
 import android.app.DialogFragment;
 import android.app.Fragment;
 import android.content.ComponentName;
@@ -34,6 +33,8 @@ import com.android.launcher3.config.FeatureFlags;
 import com.android.launcher3.graphics.GridOptionsProvider;
 import com.android.launcher3.uioverrides.plugins.PluginManagerWrapper;
 import com.android.launcher3.util.SecureSettingsObserver;
+import com.android.launcher3.settings.SettingsActivity;
+
 import static com.android.launcher3.SessionCommitReceiver.ADD_ICON_PREFERENCE_KEY;
 import static com.android.launcher3.util.SecureSettingsObserver.newNotificationSettingsObserver;
 
@@ -45,10 +46,15 @@ import androidx.preference.PreferenceGroup.PreferencePositionCallback;
 import androidx.preference.PreferenceScreen;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.launcher3.customization.IconDatabase;
+import com.android.launcher3.settings.IconPackPrefSetter;
+import com.android.launcher3.settings.ReloadingListPreference;
+import com.android.launcher3.util.AppReloader;
+
 /**
  * Settings activity for Launcher. Currently implements the following setting: Allow rotation
  */
-public class SettingsIcons extends Activity
+public class SettingsIcons extends SettingsActivity
         implements OnPreferenceStartFragmentCallback, OnPreferenceStartScreenCallback,
         SharedPreferences.OnSharedPreferenceChangeListener{
 
@@ -111,6 +117,8 @@ public class SettingsIcons extends Activity
      */
     public static class IconsSettingsFragment extends PreferenceFragment {
 
+        private static final String KEY_ICON_PACK = "pref_icon_pack";
+
         private SecureSettingsObserver mNotificationDotsObserver;
 
         private String mHighLightKey;
@@ -134,6 +142,16 @@ public class SettingsIcons extends Activity
                     screen.removePreference(preference);
                 }
             }
+
+            final Context context = getActivity();
+            ReloadingListPreference icons = (ReloadingListPreference) findPreference(KEY_ICON_PACK);
+            icons.setOnReloadListener(new IconPackPrefSetter(context));
+            icons.setOnPreferenceChangeListener((pref, val) -> {
+                IconDatabase.clearAll(context);
+                IconDatabase.setGlobal(context, (String) val);
+                AppReloader.get(context).reload();
+                return true;
+            });
         }
 
         @Override

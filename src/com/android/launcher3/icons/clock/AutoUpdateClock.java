@@ -1,4 +1,4 @@
-package com.aosp.launcher.icons.clock;
+package com.android.launcher3.icons.clock;
 
 import android.graphics.Canvas;
 import android.graphics.Rect;

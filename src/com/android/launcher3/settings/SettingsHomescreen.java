@@ -16,7 +16,6 @@
 
 package com.android.launcher3.settings;
 
-import android.app.Activity;
 import android.app.DialogFragment;
 import android.app.Fragment;
 import android.content.ComponentName;
@@ -35,6 +34,7 @@ import com.android.launcher3.config.FeatureFlags;
 import com.android.launcher3.graphics.GridOptionsProvider;
 import com.android.launcher3.uioverrides.plugins.PluginManagerWrapper;
 import com.android.launcher3.util.SecureSettingsObserver;
+import com.android.launcher3.settings.SettingsActivity;
 
 import com.aosp.launcher.AospLauncherCallbacks;
 import com.aosp.launcher.AospUtils;
@@ -50,7 +50,7 @@ import androidx.recyclerview.widget.RecyclerView;
 /**
  * Settings activity for Launcher. Currently implements the following setting: Allow rotation
  */
-public class SettingsHomescreen extends Activity
+public class SettingsHomescreen extends SettingsActivity
         implements OnPreferenceStartFragmentCallback, OnPreferenceStartScreenCallback,
         SharedPreferences.OnSharedPreferenceChangeListener{
 

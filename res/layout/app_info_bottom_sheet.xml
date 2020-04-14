@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.aosp.launcher.customization.InfoBottomSheet
+<com.android.launcher3.customization.InfoBottomSheet
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
@@ -32,10 +32,10 @@
 
     <fragment
         android:id="@+id/sheet_prefs"
-        android:name="com.aosp.launcher.customization.InfoBottomSheet$PrefsFragment"
+        android:name="com.android.launcher3.customization.InfoBottomSheet$PrefsFragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="40dp" />
 
-</com.aosp.launcher.customization.InfoBottomSheet>
+</com.android.launcher3.customization.InfoBottomSheet>

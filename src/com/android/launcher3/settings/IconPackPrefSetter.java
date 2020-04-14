@@ -1,4 +1,4 @@
-package com.aosp.launcher.settings;
+package com.android.launcher3.settings;
 
 import android.content.ComponentName;
 import android.content.Context;
@@ -13,8 +13,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 
-import com.aosp.launcher.icons.pack.IconPackManager;
-import com.aosp.launcher.customization.IconDatabase;
+import com.android.launcher3.icons.pack.IconPackManager;
+import com.android.launcher3.customization.IconDatabase;
 
 public class IconPackPrefSetter implements ReloadingListPreference.OnReloadListener {
     private final Context mContext;

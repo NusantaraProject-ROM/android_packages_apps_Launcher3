@@ -1,4 +1,4 @@
-package com.aosp.launcher.icons;
+package com.android.launcher3.icons;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -8,7 +8,7 @@ import android.graphics.drawable.Drawable;
 import com.android.launcher3.icons.BaseIconFactory;
 import com.android.launcher3.util.ComponentKey;
 
-import com.aosp.launcher.icons.pack.IconResolver;
+import com.android.launcher3.icons.pack.IconResolver;
 
 import static com.android.launcher3.icons.BaseIconFactory.CONFIG_HINT_NO_WRAP;
 

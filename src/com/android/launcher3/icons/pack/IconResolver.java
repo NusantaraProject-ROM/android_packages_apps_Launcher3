@@ -1,8 +1,8 @@
-package com.aosp.launcher.icons.pack;
+package com.android.launcher3.icons.pack;
 
 import android.graphics.drawable.Drawable;
 
-import com.aosp.launcher.icons.clock.CustomClock;
+import com.android.launcher3.icons.clock.CustomClock;
 
 public interface IconResolver {
     boolean isCalendar();

@@ -1,4 +1,4 @@
-package com.aosp.launcher.customization;
+package com.android.launcher3.customization;
 
 import android.content.ComponentName;
 import android.content.Context;

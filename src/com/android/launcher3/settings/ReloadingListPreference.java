@@ -1,14 +1,11 @@
-package com.aosp.launcher.settings;
+package com.android.launcher3.settings;
 
 import android.content.Context;
 import android.util.AttributeSet;
 
 import androidx.preference.ListPreference;
 
-import com.aosp.launcher.AospSettings;
-
-public class ReloadingListPreference extends ListPreference
-        implements AospSettings.OnResumePreferenceCallback {
+public class ReloadingListPreference extends ListPreference {
     public interface OnReloadListener {
         void updateList(ListPreference pref);
     }
@@ -33,17 +30,12 @@ public class ReloadingListPreference extends ListPreference
 
     @Override
     protected void onClick() {
-        loadEntries();
         super.onClick();
+        loadEntries();
     }
 
     public void setOnReloadListener(OnReloadListener onReloadListener) {
         mOnReloadListener = onReloadListener;
-        loadEntries();
-
-    }
-    @Override
-    public void onResume() {
         loadEntries();
     }
 

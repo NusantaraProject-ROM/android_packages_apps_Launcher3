@@ -1,4 +1,4 @@
-package com.aosp.launcher.icons.clock;
+package com.android.launcher3.icons.clock;
 
 import static com.android.launcher3.util.Executors.MAIN_EXECUTOR;
 import static com.android.launcher3.util.Executors.MODEL_EXECUTOR;

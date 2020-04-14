@@ -1,4 +1,4 @@
-package com.aosp.launcher.icons;
+package com.android.launcher3.icons;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
@@ -9,12 +9,12 @@ import com.android.launcher3.Utilities;
 import com.android.launcher3.graphics.DrawableFactory;
 import com.android.launcher3.util.ComponentKey;
 
-import com.aosp.launcher.icons.calendar.DateChangeReceiver;
-import com.aosp.launcher.icons.calendar.DynamicCalendar;
-import com.aosp.launcher.icons.clock.CustomClock;
-import com.aosp.launcher.icons.clock.DynamicClock;
-import com.aosp.launcher.icons.pack.IconPackManager;
-import com.aosp.launcher.icons.pack.IconResolver;
+import com.android.launcher3.icons.calendar.DateChangeReceiver;
+import com.android.launcher3.icons.calendar.DynamicCalendar;
+import com.android.launcher3.icons.clock.CustomClock;
+import com.android.launcher3.icons.clock.DynamicClock;
+import com.android.launcher3.icons.pack.IconPackManager;
+import com.android.launcher3.icons.pack.IconResolver;
 
 import static com.android.launcher3.LauncherSettings.Favorites.ITEM_TYPE_APPLICATION;
 

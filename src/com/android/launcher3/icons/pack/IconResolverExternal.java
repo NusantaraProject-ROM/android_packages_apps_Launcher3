@@ -1,4 +1,4 @@
-package com.aosp.launcher.icons.pack;
+package com.android.launcher3.icons.pack;
 
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
@@ -7,7 +7,7 @@ import android.graphics.drawable.Drawable;
 
 import java.util.Calendar;
 
-import com.aosp.launcher.icons.clock.CustomClock;
+import com.android.launcher3.icons.clock.CustomClock;
 
 public class IconResolverExternal implements IconResolver {
     private final PackageManager mPm;

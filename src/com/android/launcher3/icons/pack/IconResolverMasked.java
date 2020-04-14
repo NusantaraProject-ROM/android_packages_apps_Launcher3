@@ -1,4 +1,4 @@
-package com.aosp.launcher.icons.pack;
+package com.android.launcher3.icons.pack;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -18,7 +18,7 @@ import android.graphics.drawable.Drawable;
 import com.android.launcher3.icons.BaseIconFactory;
 import com.android.launcher3.icons.LauncherIcons;
 
-import com.aosp.launcher.icons.clock.CustomClock;
+import com.android.launcher3.icons.clock.CustomClock;
 
 import static com.android.launcher3.icons.BaseIconFactory.CONFIG_HINT_NO_WRAP;
 

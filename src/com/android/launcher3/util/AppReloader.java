@@ -1,4 +1,4 @@
-package com.aosp.launcher.util;
+package com.android.launcher3.util;
 
 import android.content.Context;
 import android.content.pm.LauncherActivityInfo;
@@ -17,7 +17,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import com.aosp.launcher.customization.IconDatabase;
+import com.android.launcher3.customization.IconDatabase;
 
 public class AppReloader {
     private static AppReloader sInstance;

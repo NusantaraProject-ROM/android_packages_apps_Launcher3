@@ -1,4 +1,4 @@
-package com.aosp.launcher.customization;
+package com.android.launcher3.customization;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
@@ -23,9 +23,9 @@ import com.android.launcher3.R;
 import com.android.launcher3.util.ComponentKey;
 import com.android.launcher3.widget.WidgetsBottomSheet;
 
-import com.aosp.launcher.settings.IconPackPrefSetter;
-import com.aosp.launcher.settings.ReloadingListPreference;
-import com.aosp.launcher.util.AppReloader;
+import com.android.launcher3.settings.IconPackPrefSetter;
+import com.android.launcher3.settings.ReloadingListPreference;
+import com.android.launcher3.util.AppReloader;
 
 public class InfoBottomSheet extends WidgetsBottomSheet {
     private static final String CLIP_LABEL = "ComponentName";

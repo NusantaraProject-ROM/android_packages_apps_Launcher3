@@ -1,4 +1,4 @@
-package com.aosp.launcher.icons.calendar;
+package com.android.launcher3.icons.calendar;
 
 import static com.android.launcher3.util.Executors.MODEL_EXECUTOR;
 
@@ -13,7 +13,7 @@ import com.android.launcher3.util.ComponentKey;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.aosp.launcher.util.AppReloader;
+import com.android.launcher3.util.AppReloader;
 
 /**
  * Listens for date change events and uses the IconReloader to reload all loaded calendar icons

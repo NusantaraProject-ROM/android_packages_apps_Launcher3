@@ -21,6 +21,7 @@ import static com.android.launcher3.util.Executors.MAIN_EXECUTOR;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.graphics.Point;
@@ -28,8 +29,6 @@ import android.util.Log;
 
 
 import java.util.function.Consumer;
-
-import static com.android.launcher3.IconPackProvider.PREF_ICON_PACK;
 
 /**
  * {@link BroadcastReceiver} which watches configuration changes and

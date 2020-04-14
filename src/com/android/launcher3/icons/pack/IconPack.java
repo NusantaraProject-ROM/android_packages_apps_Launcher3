@@ -1,4 +1,4 @@
-package com.aosp.launcher.icons.pack;
+package com.android.launcher3.icons.pack;
 
 import android.content.ComponentName;
 import android.content.pm.ApplicationInfo;

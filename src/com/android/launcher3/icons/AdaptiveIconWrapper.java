@@ -1,4 +1,4 @@
-package com.aosp.launcher.icons;
+package com.android.launcher3.icons;
 
 import android.annotation.TargetApi;
 import android.content.Context;

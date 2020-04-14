@@ -1,4 +1,4 @@
-package com.aosp.launcher.icons.clock;
+package com.android.launcher3.icons.clock;
 
 import android.annotation.TargetApi;
 import android.graphics.Bitmap;

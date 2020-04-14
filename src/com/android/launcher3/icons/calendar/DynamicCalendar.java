@@ -1,4 +1,4 @@
-package com.aosp.launcher.icons.calendar;
+package com.android.launcher3.icons.calendar;
 
 import android.content.ComponentName;
 import android.content.Context;

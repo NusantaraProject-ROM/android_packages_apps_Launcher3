@@ -117,6 +117,6 @@
     <string name="pref_homescreen_gestures_qs_panel">QS panel</string>
 
     <!-- Show QSB on homescreen -->
-    <string name="pref_qsb_show_title">Quick Search Bar</string>
-    <string name="pref_qsb_show_summary">Show quick searchbar on homescreen</string>
+    <string name="pref_qsb_show_title">At A Glance</string>
+    <string name="pref_qsb_show_summary">Show At A Glance</string>
 </resources>

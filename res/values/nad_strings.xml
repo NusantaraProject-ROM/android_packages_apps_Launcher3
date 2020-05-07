@@ -74,4 +74,7 @@
     <string name="iconPackPackageDefault" translatable="false">""</string>
     <string name="icon_pack">Icon pack</string>
     <string name="icon_pack_summary">Select a custom icon pack</string>
+
+    <!-- Two line labels -->
+    <string name="two_line_labels">Allow two line labels on desktop</string>
 </resources>

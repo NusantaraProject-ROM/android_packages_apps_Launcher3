@@ -25,4 +25,8 @@
         <item name="android:fontFamily">sans-serif</item>
     </style>
 
+    <style name="QuickSpaceSubText">
+        <item name="android:fontFamily">sans-serif</item>
+    </style>
+
 </resources>

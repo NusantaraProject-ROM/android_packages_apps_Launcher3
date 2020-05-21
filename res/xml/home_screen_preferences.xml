@@ -30,10 +30,11 @@
         android:defaultValue="0"
         android:persistent="false" />
 
-    <SwitchPreference
+<!--    <SwitchPreference
         android:key="pref_grid_options"
         android:title="Enable grid options"
         android:defaultValue="false"
         android:persistent="true" />
+-->
 
 </androidx.preference.PreferenceScreen> 

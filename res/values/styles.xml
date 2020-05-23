@@ -31,7 +31,7 @@
 
     <style name="LauncherTheme" parent="@style/BaseLauncherTheme">
         <item name="android:textColorSecondary">#DE000000</item>
-        <item name="allAppsScrimColor">@*android:color/theme_generic_semi_transparent_color</item>
+        <item name="allAppsScrimColor">@color/all_apps_background</item>
         <item name="allAppsInterimScrimAlpha">46</item>
         <item name="allAppsNavBarScrimColor">#66FFFFFF</item>
         <item name="allAppsTheme">@style/AllAppsTheme</item>
@@ -91,7 +91,7 @@
         <item name="android:textColorHint">#A0FFFFFF</item>
         <item name="android:colorControlHighlight">#A0FFFFFF</item>
         <item name="android:colorPrimary">@*android:color/notification_material_background_color</item>
-        <item name="allAppsScrimColor">@*android:color/theme_generic_semi_transparent_color</item>
+        <item name="allAppsScrimColor">@color/all_apps_background</item>
         <item name="allAppsInterimScrimAlpha">102</item>
         <item name="allAppsNavBarScrimColor">#80000000</item>
         <item name="allAppsTheme">@style/AllAppsTheme.Dark</item>

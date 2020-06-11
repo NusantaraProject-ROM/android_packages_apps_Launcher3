@@ -188,7 +188,8 @@ public class SettingsIcons extends Activity
                     return Utilities.ATLEAST_OREO;
                 case KEY_ICON_PACK:
                     ReloadingListPreference icons = (ReloadingListPreference) findPreference(KEY_ICON_PACK);
-                    icons.setOnReloadListener(new IconPackPrefSetter(mContext));
+                    icons.setValue(IconDatabase.getGlobal(mContext));
+                    icons.setOnReloadListener(IconPackPrefSetter::new);
                     icons.setOnPreferenceChangeListener((pref, val) -> {
                         IconDatabase.clearAll(mContext);
                         IconDatabase.setGlobal(mContext, (String) val);

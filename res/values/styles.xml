@@ -33,8 +33,8 @@
         <item name="allAppsScrimColor">@color/all_apps_background</item>
         <item name="allAppsInterimScrimAlpha">46</item>
         <item name="allAppsNavBarScrimColor">#66FFFFFF</item>
-        <item name="popupColorPrimary">@*android:color/notification_material_background_color</item>
-        <item name="popupColorSecondary">@*android:color/du_themes_qs_inactive_color</item> <!-- Gray 100 -->
+        <item name="popupColorPrimary">#FFF</item>
+        <item name="popupColorSecondary">#F5F5F5</item> <!-- Gray 100 -->
         <item name="popupColorTertiary">#E0E0E0</item> <!-- Gray 300 -->
         <item name="isMainColorDark">false</item>
         <item name="isWorkspaceDarkText">false</item>
@@ -86,8 +86,8 @@
         <item name="allAppsScrimColor">@color/all_apps_background</item>
         <item name="allAppsInterimScrimAlpha">102</item>
         <item name="allAppsNavBarScrimColor">#80000000</item>
-        <item name="popupColorPrimary">@*android:color/notification_material_background_color</item> <!-- Gray 800 -->
-        <item name="popupColorSecondary">@*android:color/du_themes_qs_inactive_color</item> <!-- Gray 700 -->
+        <item name="popupColorPrimary">#FF212121</item> <!-- Gray 800 -->
+        <item name="popupColorSecondary">#424242</item> <!-- Gray 700 -->
         <item name="popupColorTertiary">#757575</item> <!-- Gray 600 -->
         <item name="widgetsTheme">@style/WidgetContainerTheme.Dark</item>
         <item name="folderDotColor">#FF464646</item>

@@ -45,9 +45,6 @@ import com.android.launcher3.uioverrides.plugins.PluginManagerWrapper;
 import com.android.launcher3.util.SecureSettingsObserver;
 import com.android.launcher3.settings.SettingsActivity;
 
-import com.aosp.launcher.AospLauncherCallbacks;
-import com.aosp.launcher.AospUtils;
-
 /**
  * Settings activity for Launcher. Currently implements the following setting: Allow rotation
  */

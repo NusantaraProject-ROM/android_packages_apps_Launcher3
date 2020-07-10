@@ -75,11 +75,12 @@ import com.android.launcher3.util.TransformingTouchDelegate;
 
 import com.android.quickstep.WindowTransformSwipeHandler;
 
-import com.aosp.launcher.AospUtils;
 import com.aosp.launcher.AospLauncher;
 import com.aosp.launcher.AospLauncherCallbacks;
 import com.aosp.launcher.qsb.configs.ConfigurationBuilder;
 import com.aosp.launcher.search.SearchHandler;
+
+import com.android.internal.util.du.Utils;
 
 public class AllAppsQsbContainer extends FrameLayout implements Insettable, OnClickListener, OnChangeListener, OnUpdateListener, SearchUiManager {
 
@@ -463,14 +464,14 @@ public class AllAppsQsbContainer extends FrameLayout implements Insettable, OnCl
     }
 
     protected void updateQsbType() {
-        boolean useDefaultQsb = !AospUtils.hasPackageInstalled(Launcher.getLauncher(mContext), AospLauncherCallbacks.SEARCH_PACKAGE);
+        boolean useDefaultQsb = !Utils.isPackageInstalled(Launcher.getLauncher(mContext), AospLauncherCallbacks.SEARCH_PACKAGE);
         if (useDefaultQsb != mUseDefaultQsb) {
             removeDefaultQsb();
             mUseDefaultQsb = useDefaultQsb;
             ((ImageView) findViewById(R.id.g_icon)).setImageResource(mUseDefaultQsb ? R.drawable.ic_allapps_search : R.drawable.ic_qsb_logo);
             if (mSearchIcon != null) {
-				mSearchIcon.setAlpha(mUseDefaultQsb ? 0.0f : 1.0f);
-			}
+                mSearchIcon.setAlpha(mUseDefaultQsb ? 0.0f : 1.0f);
+            }
             if (mUseDefaultQsb) {
                 initDefaultQsb();
             }

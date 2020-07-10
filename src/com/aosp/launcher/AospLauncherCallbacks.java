@@ -41,6 +41,8 @@ import java.io.FileDescriptor;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
+import com.android.internal.util.du.Utils;
+
 public class AospLauncherCallbacks implements LauncherCallbacks,
         SharedPreferences.OnSharedPreferenceChangeListener, OnChangeListener {
     public static final String SEARCH_PACKAGE = "com.google.android.googlequicksearchbox";
@@ -199,7 +201,7 @@ public class AospLauncherCallbacks implements LauncherCallbacks,
 
     @Override
     public void onSharedPreferenceChanged(SharedPreferences prefs, String key) {
-        if (SettingsHomescreen.MINUS_ONE_KEY.equals(key)) {
+        if (Utilities.MINUS_ONE_KEY.equals(key)) {
             ClientOptions clientOptions = getClientOptions(prefs);
             if (clientOptions.options != mLauncherClient.mFlags) {
                 mLauncherClient.mFlags = clientOptions.options;
@@ -231,8 +233,8 @@ public class AospLauncherCallbacks implements LauncherCallbacks,
     }
 
     private ClientOptions getClientOptions(SharedPreferences prefs) {
-        boolean hasPackage = AospUtils.hasPackageInstalled(mLauncher, SEARCH_PACKAGE);
-        boolean isEnabled = prefs.getBoolean(SettingsHomescreen.MINUS_ONE_KEY, true);
+        boolean hasPackage = Utils.isPackageInstalled(mLauncher, SEARCH_PACKAGE);
+        boolean isEnabled = prefs.getBoolean(Utilities.MINUS_ONE_KEY, true);
         int canUse = hasPackage && isEnabled ? 1 : 0;
         return new ClientOptions(canUse | 2 | 4 | 8);
     }

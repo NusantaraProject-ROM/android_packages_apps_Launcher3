@@ -53,7 +53,7 @@ import java.util.List;
 /**
  * Subclass of app tracker which publishes the data to the prediction engine and gets back results.
  */
-@TargetApi(Build.VERSION_CODES.Q)
+//@TargetApi(Build.VERSION_CODES.Q)
 public class PredictionAppTracker extends AppLaunchTracker
         implements OnSharedPreferenceChangeListener, PluginListener<AppLaunchEventsPlugin> {
 

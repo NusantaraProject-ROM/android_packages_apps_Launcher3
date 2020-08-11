@@ -24,5 +24,5 @@
     <dimen name="qsb_mic_width">48dp</dimen>
     <dimen name="qsb_shadow_margin">6dp</dimen>
     <dimen name="qsb_widget_height">56dp</dimen>
-
+    <dimen name="qsbRadius">@*android:dimen/config_dialogCornerRadius</dimen>
 </resources>

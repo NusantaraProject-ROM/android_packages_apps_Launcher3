@@ -36,6 +36,7 @@ import android.graphics.drawable.InsetDrawable;
 import android.graphics.drawable.RippleDrawable;
 import android.os.Handler;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.MotionEvent;
 import android.view.KeyEvent;
@@ -406,7 +407,15 @@ public class AllAppsQsbContainer extends FrameLayout implements Insettable, OnCl
         builder.shadowBlur = shadowBlur;
         builder.keyShadowDistance = keyShadowDistance;
         builder.keyShadowAlpha = builder.ambientShadowAlpha;
-        Bitmap pill = builder.createPill(heightSpec, height);
+        Bitmap pill;
+        TypedValue edgeRadius = new TypedValue();
+        getResources().getValue(R.dimen.qsbRadius, edgeRadius, true);
+        Log.d("QSB createPill() ", "radius = " + getResources().getDimensionPixelSize(R.dimen.qsbEdgeRadius));
+        if (getResources().getDimensionPixelSize(R.dimen.qsbRadius) > 20) {
+            pill = builder.createPill(heightSpec, height);
+        } else {
+            pill = builder.createPill(heightSpec, height, edgeRadius.getDimension(getResources().getDisplayMetrics()));
+        }
         if (Color.alpha(color) < 255) {
             Canvas canvas = new Canvas(pill);
             Paint paint = new Paint();

@@ -21,5 +21,6 @@
     <!-- QSB -->
     <attr name="gIcon" format="reference" />
     <attr name="micIcon" format="reference" />
+    <attr name="qsb_radius" format="dimension" />
 
 </resources>

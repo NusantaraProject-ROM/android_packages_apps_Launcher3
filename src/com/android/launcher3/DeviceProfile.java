@@ -203,24 +203,21 @@ public class DeviceProfile {
 
         workspaceCellPaddingXPx = res.getDimensionPixelSize(R.dimen.dynamic_grid_cell_padding_x);
 
-        hotseatBarTopPaddingPx =
-                res.getDimensionPixelSize(R.dimen.dynamic_grid_hotseat_top_padding);
-        hotseatBarBottomPaddingPx = (isTallDevice ? 0
-                : res.getDimensionPixelSize(Utilities.isQSBEnabled(context)
-                        ? R.dimen.dynamic_grid_hotseat_bottom_non_tall_padding_widget
-                        : R.dimen.dynamic_grid_hotseat_bottom_non_tall_padding))
-                + res.getDimensionPixelSize(Utilities.isQSBEnabled(context)
-                        ? R.dimen.dynamic_grid_hotseat_bottom_padding_widget
-                        : R.dimen.dynamic_grid_hotseat_bottom_padding);
+        hotseatBarTopPaddingPx = Utilities.isQSBEnabled(context)
+                ? res.getDimensionPixelSize(R.dimen.dynamic_grid_hotseat_top_padding)
+                : res.getDimensionPixelSize(R.dimen.dynamic_grid_hotseat_top_padding_hidden_bottom_qsb);
+        hotseatBarBottomPaddingPx = Utilities.isQSBEnabled(context)
+                ? ((isTallDevice ? 0
+                : res.getDimensionPixelSize(R.dimen.dynamic_grid_hotseat_bottom_non_tall_padding))
+                + res.getDimensionPixelSize(R.dimen.dynamic_grid_hotseat_bottom_padding))
+                : res.getDimensionPixelSize(R.dimen.dynamic_grid_hotseat_bottom_padding_hidden_bottom_qsb);
         hotseatBarSidePaddingEndPx =
                 res.getDimensionPixelSize(R.dimen.dynamic_grid_hotseat_side_padding);
         // Add a bit of space between nav bar and hotseat in vertical bar layout.
         hotseatBarSidePaddingStartPx = isVerticalBarLayout() ? verticalDragHandleSizePx : 0;
         hotseatBarSizePx = ResourceUtils.pxFromDp(inv.iconSize, dm) + (isVerticalBarLayout()
                 ? (hotseatBarSidePaddingStartPx + hotseatBarSidePaddingEndPx)
-                : (res.getDimensionPixelSize(Utilities.isQSBEnabled(context)
-                        ? R.dimen.dynamic_grid_hotseat_extra_vertical_size_widget
-                        : R.dimen.dynamic_grid_hotseat_extra_vertical_size)
+                : (res.getDimensionPixelSize(R.dimen.dynamic_grid_hotseat_extra_vertical_size)
                         + hotseatBarTopPaddingPx + hotseatBarBottomPaddingPx));
 
         // Calculate all of the remaining variables.
@@ -234,11 +231,11 @@ public class DeviceProfile {
             // Note: This calculation was created after noticing a pattern in the design spec.
             int extraSpace = getCellSize().y - iconSizePx - iconDrawablePaddingPx * 2
                     - verticalDragHandleSizePx;
-            hotseatBarSizePx += extraSpace;
-            hotseatBarBottomPaddingPx += extraSpace;
+            //hotseatBarSizePx += extraSpace;
+            //hotseatBarBottomPaddingPx += extraSpace;
 
             // Recalculate the available dimensions using the new hotseat size.
-            updateAvailableDimensions(dm, res);
+            //updateAvailableDimensions(dm, res);
         }
 
         if (originalIDP != null) {

@@ -129,9 +129,7 @@ public class AllAppsQsbContainer extends FrameLayout implements Insettable, OnCl
             setOnClickListener(this);
         }
         mIsMainColorDark = Themes.getAttrBoolean(mLauncher, R.attr.isMainColorDark);
-        mMarginAdjusting = mContext.getResources().getDimensionPixelSize(Utilities.isQSBEnabled(context)
-            ? R.dimen.qsb_margin_top_adjusting
-            : R.dimen.qsb_margin_top_qsbhidden);
+        mMarginAdjusting = mContext.getResources().getDimensionPixelSize(R.dimen.qsb_margin_top_adjusting);
         mSearchIconWidth = getResources().getDimensionPixelSize(R.dimen.qsb_mic_width);
         mShadowMargin = getResources().getDimensionPixelSize(R.dimen.qsb_shadow_margin);
         mIsRtl = Utilities.isRtl(getResources());
@@ -537,6 +535,6 @@ public class AllAppsQsbContainer extends FrameLayout implements Insettable, OnCl
     }
 
     private boolean shouldHideDockSearch() {
-        return !Utilities.showQSB(getContext(), mLauncher);
+        return !Utilities.isQSBEnabled(getContext());
     }
 }

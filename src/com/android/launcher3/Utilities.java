@@ -659,14 +659,6 @@ public final class Utilities {
         return getPrefs(context).getBoolean(LOCK_DESKTOP_KEY, false);
     }
 
-    public static boolean showQSB(Context context, Launcher launcher) {
-        LauncherAppState appState = LauncherAppState.getInstance(launcher);
-        if (!appState.isSearchAppAvailable()) {
-            return false;
-        }
-        return isQSBEnabled(context);
-    }
-
     public static boolean isQSBEnabled(Context context) {
         SharedPreferences prefs = getPrefs(context.getApplicationContext());
         return prefs.getBoolean(KEY_DOCK_SEARCH, true);

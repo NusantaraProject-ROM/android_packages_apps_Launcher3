@@ -1028,13 +1028,6 @@ public class Launcher extends BaseDraggingActivity implements LauncherExterns,
         mStateManager.onWindowFocusChanged();
     }
 
-    public void startActivitySafelyAuth(View v, Intent intent, ItemInfo item,
-            String sourceContainer) {
-        Utilities.showLockScreen(this, getString(R.string.trust_apps_manager_name_dialog), () -> {
-            startActivitySafely(v, intent, item, sourceContainer);
-        });
-    }
-
     public interface LauncherOverlay {
 
         /**

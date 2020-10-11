@@ -18,6 +18,8 @@ package com.android.launcher3.settings;
 
 import static androidx.core.view.accessibility.AccessibilityNodeInfoCompat.ACTION_ACCESSIBILITY_FOCUS;
 
+import static com.android.launcher3.OverlayCallbackImpl.KEY_ENABLE_MINUS_ONE;
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -65,6 +67,10 @@ public class SettingsHomescreen extends CollapsingToolbarBaseActivity
     static final String EXTRA_FRAGMENT = ":settings:fragment";
     @VisibleForTesting
     static final String EXTRA_FRAGMENT_ARGS = ":settings:fragment_args";
+
+    protected static final String GSA_PACKAGE = "com.google.android.googlequicksearchbox";
+
+    private Preference mShowGoogleAppPref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -204,10 +210,27 @@ public class SettingsHomescreen extends CollapsingToolbarBaseActivity
          * will remove that preference from the list.
          */
         protected boolean initPreference(Preference preference) {
-            /*switch (preference.getKey()) {
-            }*/
+            switch (preference.getKey()) {
+                case KEY_ENABLE_MINUS_ONE:
+                    mShowGoogleAppPref = preference;
+                    updateIsGoogleAppEnabled();
+                    return true;
+                }
+            return true;
+        }
 
-            return false;
+        public static boolean isGSAEnabled(Context context) {
+            try {
+                return context.getPackageManager().getApplicationInfo(GSA_PACKAGE, 0).enabled;
+            } catch (PackageManager.NameNotFoundException e) {
+                return false;
+            }
+        }
+
+        private void updateIsGoogleAppEnabled() {
+            if (mShowGoogleAppPref != null) {
+                mShowGoogleAppPref.setEnabled(isGSAEnabled(getContext()));
+            }
         }
 
         @Override
@@ -223,6 +246,7 @@ public class SettingsHomescreen extends CollapsingToolbarBaseActivity
                     requestAccessibilityFocus(getListView());
                 }
             }
+            updateIsGoogleAppEnabled();
         }
 
         @Override

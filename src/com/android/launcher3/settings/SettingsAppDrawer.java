@@ -16,6 +16,9 @@
 
 package com.android.launcher3.settings;
 
+import android.app.Activity;
+import android.app.DialogFragment;
+import android.app.Fragment;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -24,18 +27,6 @@ import android.os.Bundle;
 import android.provider.Settings;
 import android.text.TextUtils;
 
-import androidx.fragment.app.DialogFragment;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
-import androidx.fragment.app.FragmentManager;
-import androidx.preference.Preference;
-import androidx.preference.PreferenceFragmentCompat;
-import androidx.preference.PreferenceFragmentCompat.OnPreferenceStartFragmentCallback;
-import androidx.preference.PreferenceFragmentCompat.OnPreferenceStartScreenCallback;
-import androidx.preference.PreferenceGroup.PreferencePositionCallback;
-import androidx.preference.PreferenceScreen;
-import androidx.recyclerview.widget.RecyclerView;
-
 import com.android.launcher3.LauncherFiles;
 import com.android.launcher3.R;
 import com.android.launcher3.Utilities;
@@ -43,13 +34,23 @@ import com.android.launcher3.config.FeatureFlags;
 import com.android.launcher3.uioverrides.plugins.PluginManagerWrapper;
 import com.android.launcher3.util.SecureSettingsObserver;
 
+import androidx.preference.Preference;
+import androidx.preference.PreferenceFragment;
+import androidx.preference.PreferenceFragment.OnPreferenceStartFragmentCallback;
+import androidx.preference.PreferenceFragment.OnPreferenceStartScreenCallback;
+import androidx.preference.PreferenceGroup.PreferencePositionCallback;
+import androidx.preference.PreferenceScreen;
+import androidx.recyclerview.widget.RecyclerView;
+
 /**
  * Settings activity for Launcher. Currently implements the following setting: Allow rotation
  */
-public class SettingsAppDrawer extends FragmentActivity
+public class SettingsAppDrawer extends Activity
         implements OnPreferenceStartFragmentCallback, OnPreferenceStartScreenCallback,
         SharedPreferences.OnSharedPreferenceChangeListener{
 
+    public static final String EXTRA_FRAGMENT_ARG_KEY = ":settings:fragment_args_key";
+    public static final String EXTRA_SHOW_FRAGMENT_ARGS = ":settings:show_fragment_args";
     private static final int DELAY_HIGHLIGHT_DURATION_MILLIS = 600;
     public static final String SAVE_HIGHLIGHTED_KEY = "android:preference_highlighted";
 
@@ -57,7 +58,7 @@ public class SettingsAppDrawer extends FragmentActivity
     protected void onCreate(final Bundle bundle) {
         super.onCreate(bundle);
         if (bundle == null) {
-            getSupportFragmentManager().beginTransaction().replace(android.R.id.content, new AppDrawerSettingsFragment()).commit();
+            getFragmentManager().beginTransaction().replace(android.R.id.content, new AppDrawerSettingsFragment()).commit();
         }
         Utilities.getPrefs(getApplicationContext()).registerOnSharedPreferenceChangeListener(this);
     }
@@ -67,39 +68,41 @@ public class SettingsAppDrawer extends FragmentActivity
     }
 
     private boolean startFragment(String fragment, Bundle args, String key) {
-        if (Utilities.ATLEAST_P && getSupportFragmentManager().isStateSaved()) {
+        if (Utilities.ATLEAST_P && getFragmentManager().isStateSaved()) {
             // Sometimes onClick can come after onPause because of being posted on the handler.
             // Skip starting new fragments in that case.
             return false;
         }
-        final FragmentManager fm = getSupportFragmentManager();
-        final Fragment f = fm.getFragmentFactory().instantiate(getClassLoader(), fragment);
-        f.setArguments(args);
+        Fragment f = Fragment.instantiate(this, fragment, args);
         if (f instanceof DialogFragment) {
-            ((DialogFragment) f).show(getSupportFragmentManager(), key);
+            ((DialogFragment) f).show(getFragmentManager(), key);
         } else {
-            fm.beginTransaction().replace(android.R.id.content, f).addToBackStack(key).commit();
+            getFragmentManager()
+                    .beginTransaction()
+                    .replace(android.R.id.content, f)
+                    .addToBackStack(key)
+                    .commit();
         }
         return true;
     }
 
     @Override
     public boolean onPreferenceStartFragment(
-            PreferenceFragmentCompat preferenceFragment, Preference pref) {
+            PreferenceFragment preferenceFragment, Preference pref) {
         return startFragment(pref.getFragment(), pref.getExtras(), pref.getKey());
     }
 
     @Override
-    public boolean onPreferenceStartScreen(PreferenceFragmentCompat caller, PreferenceScreen pref) {
+    public boolean onPreferenceStartScreen(PreferenceFragment caller, PreferenceScreen pref) {
         Bundle args = new Bundle();
-        args.putString(PreferenceFragmentCompat.ARG_PREFERENCE_ROOT, pref.getKey());
+        args.putString(PreferenceFragment.ARG_PREFERENCE_ROOT, pref.getKey());
         return startFragment(getString(R.string.app_drawer_category_title), args, pref.getKey());
     }
 
     /**
      * This fragment shows the launcher preferences.
      */
-    public static class AppDrawerSettingsFragment extends PreferenceFragmentCompat {
+    public static class AppDrawerSettingsFragment extends PreferenceFragment {
 
         private String mHighLightKey;
         private boolean mPreferenceHighlighted = false;

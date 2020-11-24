@@ -105,6 +105,7 @@ public final class Utilities {
     public static final String KEY_APP_SUGGESTION = "pref_show_predictions";
     public static final String KEY_SHOW_SEARCHBAR = "pref_show_quickspace";
     public static final String ICON_SIZE = "pref_custom_icon_size";
+    public static final String KEY_ALL_APPS_BACKGROUND_ALPHA = "pref_all_apps_scrim_alpha";
 
     private static final Pattern sTrimPattern =
             Pattern.compile("^[\\s|\\p{javaSpaceChar}]*(.*)[\\s|\\p{javaSpaceChar}]*$");
@@ -703,11 +704,6 @@ public final class Utilities {
         }
     }
 
-    public static int getIconSizeModifier(Context context) {
-        SharedPreferences prefs = getPrefs(context.getApplicationContext());
-        return prefs.getInt(ICON_SIZE, 100);
-    }
-
     public static void restart(final Context context) {
         MODEL_EXECUTOR.execute(() -> {
             try {
@@ -766,5 +762,15 @@ public final class Utilities {
     public static boolean showQSB(Context context) {
         SharedPreferences prefs = getPrefs(context.getApplicationContext());
         return prefs.getBoolean(KEY_SHOW_SEARCHBAR, true);
+    }
+
+    public static int getIconSizeModifier(Context context) {
+        SharedPreferences prefs = getPrefs(context.getApplicationContext());
+        return prefs.getInt(ICON_SIZE, 100);
+    }
+
+    public static int getAllAppsScrimAlpha(Context context) {
+        SharedPreferences prefs = getPrefs(context.getApplicationContext());
+        return prefs.getInt(KEY_ALL_APPS_BACKGROUND_ALPHA, 100);
     }
 }

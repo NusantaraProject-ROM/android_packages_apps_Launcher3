@@ -96,4 +96,7 @@
 
     <!-- Icon size -->
     <string name="icon_size_title">Icon size</string>
+
+    <!-- Scrim alpha in apps drawer -->
+    <string name="all_apps_background_opacity_title">Background opacity</string>
 </resources>

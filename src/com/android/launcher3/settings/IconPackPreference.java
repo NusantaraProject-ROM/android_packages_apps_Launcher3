@@ -66,7 +66,7 @@ public class IconPackPreference extends Preference {
     }
 
     private void setNone() {
-        setIcon(getContext().getResources().getDrawable(R.mipmap.ic_launcher));
+        setIcon(getContext().getResources().getDrawable(R.mipmap.ic_launcher_home));
         setSummary("None");
     }
 
@@ -137,7 +137,7 @@ public class IconPackPreference extends Preference {
 
             Resources res = context.getResources();
             String defaultLabel = "None";
-            Drawable icon = res.getDrawable(R.mipmap.ic_launcher);
+            Drawable icon = res.getDrawable(R.mipmap.ic_launcher_home);
             mSupportedPackages.add(0, new IconPackInfo(defaultLabel, icon, ""));
             mCurrentIconPack = currentPack;
         }

@@ -77,6 +77,8 @@ public class SettingsHomescreen extends Activity
         switch (key) {
             case Utilities.DESKTOP_SHOW_QUICKSPACE:
             case Utilities.KEY_SHOW_ALT_QUICKSPACE:
+            case Utilities.KEY_SHOW_QUICKSPACE_NOWPLAYING:
+            case Utilities.KEY_SHOW_QUICKSPACE_PSONALITY:
                 LauncherAppState.getInstanceNoCreate().setNeedsRestart();
                 break;
             default:
@@ -161,13 +163,6 @@ public class SettingsHomescreen extends Activity
                     doubletabAction.setValue(dtGestureValue);
                     doubletabAction.setSummary(doubletabAction.getEntry());
                     Utilities.restart(mContext);
-                    return true;
-                }
-            });
-            SwitchPreference quickspaceNowPlaying = (SwitchPreference) findPreference(Utilities.KEY_SHOW_QUICKSPACE_NOWPLAYING);
-            quickspaceNowPlaying.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
-                public boolean onPreferenceChange(Preference preference, Object newValue) {
-                    LauncherAppState.getInstanceNoCreate().setNeedsRestart();
                     return true;
                 }
             });

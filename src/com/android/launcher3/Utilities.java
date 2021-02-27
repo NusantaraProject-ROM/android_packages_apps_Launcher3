@@ -104,7 +104,7 @@ public final class Utilities {
     private static final String TAG = "Launcher.Utilities";
     public static final String KEY_APP_SUGGESTION = "pref_show_predictions";
     public static final String KEY_SHOW_SEARCHBAR = "pref_show_quickspace";
-    public static final String ICON_SIZE = "pref_icon_size";
+    public static final String ICON_SIZE = "pref_custom_icon_size";
 
     private static final Pattern sTrimPattern =
             Pattern.compile("^[\\s|\\p{javaSpaceChar}]*(.*)[\\s|\\p{javaSpaceChar}]*$");
@@ -703,32 +703,10 @@ public final class Utilities {
         }
     }
 
-    public static float getIconSizeModifier(Context context) {
-        String saved = getPrefs(context).getString(ICON_SIZE, "average");
-        float offset;
-        switch (saved) {
-            case "extrasmall":
-                offset = 0.75F;
-                break;
-            case "small":
-                offset = 0.90F;
-                break;
-            case "average":
-                offset = 1.00F;
-                break;
-            case "large":
-                offset = 1.10F;
-                break;
-            case "extralarge":
-                offset = 1.25F;
-                break;
-            default:
-                offset = 1.00F;
-                break;
-        }
-        return offset;
+    public static int getIconSizeModifier(Context context) {
+        SharedPreferences prefs = getPrefs(context.getApplicationContext());
+        return prefs.getInt(ICON_SIZE, 100);
     }
-
 
     public static void restart(final Context context) {
         MODEL_EXECUTOR.execute(() -> {

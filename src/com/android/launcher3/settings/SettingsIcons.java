@@ -27,6 +27,7 @@ import android.os.Bundle;
 import android.provider.Settings;
 import android.text.TextUtils;
 
+import com.android.launcher3.LauncherAppState;
 import com.android.launcher3.LauncherFiles;
 import com.android.launcher3.R;
 import com.android.launcher3.Utilities;
@@ -40,8 +41,8 @@ import static com.android.launcher3.util.SecureSettingsObserver.newNotificationS
 import com.android.launcher3.customization.IconDatabase;
 import com.android.launcher3.settings.preference.IconPackPrefSetter;
 import com.android.launcher3.settings.preference.ReloadingListPreference;
+import com.android.launcher3.settings.preferences.CustomSeekBarPreference;
 
-import androidx.preference.DropDownPreference;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragment;
 import androidx.preference.Preference.OnPreferenceChangeListener;
@@ -199,16 +200,14 @@ public class SettingsIcons extends Activity
                         return true;
                     });
                 case Utilities.ICON_SIZE:
-                    final DropDownPreference iconSizes = (DropDownPreference) findPreference(Utilities.ICON_SIZE);
-                    iconSizes.setSummary(iconSizes.getEntry());
+                    final CustomSeekBarPreference iconSizes = (CustomSeekBarPreference) findPreference(Utilities.ICON_SIZE);
                     iconSizes.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
-                    public boolean onPreferenceChange(Preference preference, Object newValue) {
-                    int index = iconSizes.findIndexOfValue((String) newValue);
-                    iconSizes.setSummary(iconSizes.getEntries()[index]);
-                    Utilities.restart(getActivity());
+                        public boolean onPreferenceChange(Preference preference, Object newValue) {
+                            LauncherAppState.getInstanceNoCreate().setNeedsRestart();
+                            return true;
+                        }
+                    });
                     return true;
-                    }
-                });
             }
             return true;
         }

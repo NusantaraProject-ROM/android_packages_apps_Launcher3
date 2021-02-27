@@ -21,4 +21,6 @@
 
     <!-- Bottomsheet bg color -->
     <color name="app_info_bottom_sheet_bg">#ffffff</color>
+
+    <color name="disabled_text_color">#66000000</color> <!-- 38% black -->
 </resources>

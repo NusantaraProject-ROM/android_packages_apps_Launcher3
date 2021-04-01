@@ -26,8 +26,6 @@ import android.app.prediction.AppPredictor;
 import android.app.prediction.AppTarget;
 import android.content.ComponentName;
 import android.content.Context;
-import android.content.SharedPreferences;
-import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -71,7 +69,7 @@ import java.util.stream.IntStream;
  * that client id.
  */
 public class PredictionUiStateManager implements StateListener<LauncherState>,
-        ItemInfoUpdateReceiver, OnIDPChangeListener, OnUpdateListener, OnSharedPreferenceChangeListener {
+        ItemInfoUpdateReceiver, OnIDPChangeListener, OnUpdateListener {
 
     public static final String LAST_PREDICTION_ENABLED_STATE = "last_prediction_enabled_state";
 
@@ -91,7 +89,6 @@ public class PredictionUiStateManager implements StateListener<LauncherState>,
             new MainThreadInitializedObject<>(PredictionUiStateManager::new);
 
     private final Context mContext;
-    private final SharedPreferences mMainPrefs;
 
     private final DynamicItemCache mDynamicItemCache;
     private final List[] mPredictionServicePredictions;
@@ -104,9 +101,10 @@ public class PredictionUiStateManager implements StateListener<LauncherState>,
     private PredictionState mPendingState;
     private PredictionState mCurrentState;
 
+    private boolean mGettingValidPredictionResults;
+
     private PredictionUiStateManager(Context context) {
         mContext = context;
-        mMainPrefs = Utilities.getPrefs(context);
 
         mDynamicItemCache = new DynamicItemCache(context, this::onAppsUpdated);
 
@@ -120,9 +118,9 @@ public class PredictionUiStateManager implements StateListener<LauncherState>,
         for (int i = 0; i < mPredictionServicePredictions.length; i++) {
             mPredictionServicePredictions[i] = Collections.emptyList();
         }
+        mGettingValidPredictionResults = Utilities.getDevicePrefs(context)
+                .getBoolean(LAST_PREDICTION_ENABLED_STATE, true);
 
-        // Listens for enable/disable signal, and predictions if using AiAi is disabled.
-        mMainPrefs.registerOnSharedPreferenceChangeListener(this);
         // Call this last
         mCurrentState = parseLastState();
     }
@@ -188,13 +186,6 @@ public class PredictionUiStateManager implements StateListener<LauncherState>,
         }
     }
 
-    @Override
-    public void onSharedPreferenceChanged(SharedPreferences prefs, String key) {
-        if (Utilities.KEY_APP_SUGGESTION.equals(key)) {
-            dispatchOnChange(true);
-        }
-    }
-
     private void applyState(PredictionState state) {
         mCurrentState = state;
         if (mAppsView != null) {
@@ -203,10 +194,24 @@ public class PredictionUiStateManager implements StateListener<LauncherState>,
         }
     }
 
+    private void updatePredictionStateAfterCallback() {
+        boolean validResults = false;
+        for (List l : mPredictionServicePredictions) {
+            validResults |= l != null && !l.isEmpty();
+        }
+        if (validResults != mGettingValidPredictionResults) {
+            mGettingValidPredictionResults = validResults;
+            Utilities.getDevicePrefs(mContext).edit()
+                    .putBoolean(LAST_PREDICTION_ENABLED_STATE, true)
+                    .apply();
+        }
+        dispatchOnChange(true);
+    }
+
     public AppPredictor.Callback appPredictorCallback(Client client) {
         return targets -> {
             mPredictionServicePredictions[client.ordinal()] = targets;
-            dispatchOnChange(true);
+            updatePredictionStateAfterCallback();
         };
     }
 
@@ -225,7 +230,7 @@ public class PredictionUiStateManager implements StateListener<LauncherState>,
 
     private PredictionState parseLastState() {
         PredictionState state = new PredictionState();
-        state.isEnabled = mMainPrefs.getBoolean(Utilities.KEY_APP_SUGGESTION, true);
+        state.isEnabled = mGettingValidPredictionResults;
         if (!state.isEnabled) {
             state.apps = Collections.EMPTY_LIST;
             return state;

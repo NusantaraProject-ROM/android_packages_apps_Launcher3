@@ -15,6 +15,7 @@
  */
 package com.android.launcher3.appprediction;
 
+import static com.android.launcher3.InvariantDeviceProfile.CHANGE_FLAG_GRID;
 import static com.android.launcher3.util.Executors.UI_HELPER_EXECUTOR;
 
 import android.annotation.TargetApi;
@@ -26,8 +27,6 @@ import android.app.prediction.AppTargetEvent;
 import android.app.prediction.AppTargetId;
 import android.content.ComponentName;
 import android.content.Context;
-import android.content.SharedPreferences;
-import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -39,9 +38,8 @@ import androidx.annotation.Nullable;
 import androidx.annotation.UiThread;
 import androidx.annotation.WorkerThread;
 
-import com.android.launcher3.appprediction.PredictionUiStateManager.Client;
 import com.android.launcher3.InvariantDeviceProfile;
-import com.android.launcher3.Utilities;
+import com.android.launcher3.appprediction.PredictionUiStateManager.Client;
 import com.android.launcher3.model.AppLaunchTracker;
 import com.android.launcher3.uioverrides.plugins.PluginManagerWrapper;
 import com.android.systemui.plugins.AppLaunchEventsPlugin;
@@ -55,7 +53,7 @@ import java.util.List;
  */
 @TargetApi(Build.VERSION_CODES.Q)
 public class PredictionAppTracker extends AppLaunchTracker
-        implements OnSharedPreferenceChangeListener, PluginListener<AppLaunchEventsPlugin> {
+        implements PluginListener<AppLaunchEventsPlugin> {
 
     private static final String TAG = "PredictionAppTracker";
     private static final boolean DBG = false;
@@ -69,8 +67,6 @@ public class PredictionAppTracker extends AppLaunchTracker
     private final Handler mMessageHandler;
     private final List<AppLaunchEventsPlugin> mAppLaunchEventsPluginsList;
 
-    private boolean mEnabled;
-
     // Accessed only on worker thread
     private AppPredictor mHomeAppPredictor;
     private AppPredictor mRecentsOverviewPredictor;
@@ -78,11 +74,9 @@ public class PredictionAppTracker extends AppLaunchTracker
     public PredictionAppTracker(Context context) {
         mContext = context;
         mMessageHandler = new Handler(UI_HELPER_EXECUTOR.getLooper(), this::handleMessage);
-
-        SharedPreferences prefs = Utilities.getPrefs(context);
-        setEnabled(prefs.getBoolean(Utilities.KEY_APP_SUGGESTION, true));
-        prefs.registerOnSharedPreferenceChangeListener(this);
         InvariantDeviceProfile.INSTANCE.get(mContext).addOnChangeListener(this::onIdpChanged);
+
+        mMessageHandler.sendEmptyMessage(MSG_INIT);
 
         mAppLaunchEventsPluginsList = new ArrayList<>();
         PluginManagerWrapper.INSTANCE.get(context)
@@ -91,15 +85,9 @@ public class PredictionAppTracker extends AppLaunchTracker
 
     @UiThread
     private void onIdpChanged(int changeFlags, InvariantDeviceProfile profile) {
-        // Reinitialize everything
-        setEnabled(mEnabled);
-    }
-
-    @Override
-    @UiThread
-    public void onSharedPreferenceChanged(SharedPreferences prefs, String key) {
-        if (Utilities.KEY_APP_SUGGESTION.equals(key)) {
-            setEnabled(prefs.getBoolean(Utilities.KEY_APP_SUGGESTION, true));
+        if ((changeFlags & CHANGE_FLAG_GRID) != 0) {
+            // Reinitialize everything
+            mMessageHandler.sendEmptyMessage(MSG_INIT);
         }
     }
 
@@ -162,13 +150,13 @@ public class PredictionAppTracker extends AppLaunchTracker
                 return true;
             }
             case MSG_LAUNCH: {
-                if (mEnabled && mHomeAppPredictor != null) {
+                if (mHomeAppPredictor != null) {
                     mHomeAppPredictor.notifyAppTargetEvent((AppTargetEvent) msg.obj);
                 }
                 return true;
             }
             case MSG_PREDICT: {
-                if (mEnabled && mHomeAppPredictor != null) {
+                if (mHomeAppPredictor != null) {
                     String client = (String) msg.obj;
                     if (Client.HOME.id.equals(client)) {
                         mHomeAppPredictor.requestPredictionUpdate();
@@ -196,27 +184,16 @@ public class PredictionAppTracker extends AppLaunchTracker
         mAppLaunchEventsPluginsList.forEach(AppLaunchEventsPlugin::onReturnedToHome);
     }
 
-    @UiThread
-    public void setEnabled(boolean isEnabled) {
-        mEnabled = isEnabled;
-        if (isEnabled) {
-            mMessageHandler.removeMessages(MSG_DESTROY);
-            mMessageHandler.sendEmptyMessage(MSG_INIT);
-        } else {
-            mMessageHandler.removeMessages(MSG_INIT);
-            mMessageHandler.sendEmptyMessage(MSG_DESTROY);
-        }
-    }
-
     @Override
     @UiThread
     public void onStartShortcut(String packageName, String shortcutId, UserHandle user,
                                 String container) {
         // TODO: Use the full shortcut info
-        AppTarget target = new AppTarget
-                .Builder(new AppTargetId("shortcut:" + shortcutId), packageName, user)
-                    .setClassName(shortcutId)
-                    .build();
+        AppTarget target = new AppTarget.Builder(
+                new AppTargetId("shortcut:" + shortcutId), packageName, user)
+                .setClassName(shortcutId)
+                .build();
+
         sendLaunch(target, container);
 
         // Relay onStartShortcut info to every connected plugin.
@@ -227,16 +204,17 @@ public class PredictionAppTracker extends AppLaunchTracker
                         user,
                         container != null ? container : CONTAINER_DEFAULT)
         );
+
     }
 
     @Override
     @UiThread
     public void onStartApp(ComponentName cn, UserHandle user, String container) {
         if (cn != null) {
-            AppTarget target = new AppTarget
-                    .Builder(new AppTargetId("app:" + cn), cn.getPackageName(), user)
-                        .setClassName(cn.getClassName())
-                        .build();
+            AppTarget target = new AppTarget.Builder(
+                    new AppTargetId("app:" + cn), cn.getPackageName(), user)
+                    .setClassName(cn.getClassName())
+                    .build();
             sendLaunch(target, container);
 
             // Relay onStartApp to every connected plugin.
@@ -249,12 +227,41 @@ public class PredictionAppTracker extends AppLaunchTracker
         }
     }
 
+    @Override
     @UiThread
-    private void sendLaunch(AppTarget target, String container) {
-        AppTargetEvent event = new AppTargetEvent.Builder(target, AppTargetEvent.ACTION_LAUNCH)
+    public void onDismissApp(ComponentName cn, UserHandle user, String container) {
+        if (cn == null) return;
+        AppTarget target = new AppTarget.Builder(
+                new AppTargetId("app: " + cn), cn.getPackageName(), user)
+                .setClassName(cn.getClassName())
+                .build();
+        sendDismiss(target, container);
+
+        // Relay onDismissApp to every connected plugin.
+        mAppLaunchEventsPluginsList
+                .forEach(plugin -> plugin.onDismissApp(
+                        cn,
+                        user,
+                        container != null ? container : CONTAINER_DEFAULT)
+        );
+    }
+
+    @UiThread
+    private void sendEvent(AppTarget target, String container, int eventId) {
+        AppTargetEvent event = new AppTargetEvent.Builder(target, eventId)
                 .setLaunchLocation(container == null ? CONTAINER_DEFAULT : container)
                 .build();
         Message.obtain(mMessageHandler, MSG_LAUNCH, event).sendToTarget();
+    }
+
+    @UiThread
+    private void sendLaunch(AppTarget target, String container) {
+        sendEvent(target, container, AppTargetEvent.ACTION_LAUNCH);
+    }
+
+    @UiThread
+    private void sendDismiss(AppTarget target, String container) {
+        sendEvent(target, container, AppTargetEvent.ACTION_DISMISS);
     }
 
     @Override
@@ -267,4 +274,3 @@ public class PredictionAppTracker extends AppLaunchTracker
         mAppLaunchEventsPluginsList.remove(appLaunchEventsPlugin);
     }
 }
-

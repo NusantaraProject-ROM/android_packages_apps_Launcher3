@@ -102,7 +102,6 @@ import static com.android.launcher3.util.Executors.MODEL_EXECUTOR;
 public final class Utilities {
 
     private static final String TAG = "Launcher.Utilities";
-    public static final String KEY_APP_SUGGESTION = "pref_show_predictions";
     public static final String KEY_SHOW_SEARCHBAR = "pref_show_quickspace";
     public static final String ICON_SIZE = "pref_custom_icon_size";
     public static final String KEY_ALL_APPS_BACKGROUND_ALPHA = "pref_all_apps_scrim_alpha";

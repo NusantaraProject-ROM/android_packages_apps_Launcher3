@@ -332,7 +332,7 @@ public class Workspace extends PagedView<WorkspacePageIndicator>
                 ActionUtils.clearAllNotifications();
                 break;
             case 5: // Screenshot
-                ActionUtils.takeScreenshot(true);
+                ActionUtils.takeScreenshot(1);
                 break;
             case 6: // Notifications
                 ActionUtils.toggleNotifications();

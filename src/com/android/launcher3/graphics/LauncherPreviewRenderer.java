@@ -62,7 +62,6 @@ import com.android.launcher3.LauncherModel;
 import com.android.launcher3.LauncherSettings;
 import com.android.launcher3.LauncherSettings.Favorites;
 import com.android.launcher3.R;
-import com.android.launcher3.Utilities;
 import com.android.launcher3.WorkspaceLayoutManager;
 import com.android.launcher3.config.FeatureFlags;
 import com.android.launcher3.folder.FolderIcon;
@@ -504,7 +503,7 @@ public class LauncherPreviewRenderer {
             }
 
             // Add first page QSB
-            if (Utilities.showQSB(this)) {
+            if (FeatureFlags.QSB_ON_FIRST_SCREEN) {
                 View qsb = mHomeElementInflater.inflate(
                         R.layout.search_container_workspace, mWorkspace, false);
                 CellLayout.LayoutParams lp =

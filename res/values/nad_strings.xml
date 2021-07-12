@@ -88,7 +88,4 @@
     <!-- Scrim alpha in apps drawer -->
     <string name="all_apps_background_opacity_title">Background opacity</string>
 
-    <!-- Show searchbar -->
-    <string name="show_searchbar_title">Show search bar</string>
-    <string name="show_searchbar_summary">Show the search bar on the home screen</string>
 </resources>

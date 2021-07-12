@@ -102,7 +102,6 @@ import static com.android.launcher3.util.Executors.MODEL_EXECUTOR;
 public final class Utilities {
 
     private static final String TAG = "Launcher.Utilities";
-    public static final String KEY_SHOW_SEARCHBAR = "pref_show_quickspace";
     public static final String ICON_SIZE = "pref_custom_icon_size";
     public static final String KEY_ALL_APPS_BACKGROUND_ALPHA = "pref_all_apps_scrim_alpha";
 
@@ -136,6 +135,10 @@ public final class Utilities {
      * Set on a motion event dispatched from the nav bar. See {@link MotionEvent#setEdgeFlags(int)}.
      */
     public static final int EDGE_NAV_BAR = 1 << 8;
+
+    private static final long WAIT_BEFORE_RESTART = 250;
+
+    public static final String KEY_SHOW_SEARCHBAR = "pref_show_searchbar";
 
     /**
      * Indicates if the device has a debug build. Should only be used to store additional info or

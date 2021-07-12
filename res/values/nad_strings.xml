@@ -48,11 +48,6 @@
     <string name="pref_homescreen_gestures_notifications">Notifications</string>
     <string name="pref_homescreen_gestures_qspanel">QS panel</string>
 
-    <!-- SmartSpace -->
-    <string name="smartspace_preferences">Preferences</string>
-    <string name="show_quickspace_title">At A Glance</string>
-    <string name="show_quickspace_summary">Show at the top of your Home screen</string>
-
     <!-- Settings title to show Google Now at -1 screen on launcher. [CHAR LIMIT=50] -->
     <string name="title_show_google_app">Show Google App</string>
 
@@ -92,4 +87,8 @@
 
     <!-- Scrim alpha in apps drawer -->
     <string name="all_apps_background_opacity_title">Background opacity</string>
+
+    <!-- Show searchbar -->
+    <string name="show_searchbar_title">Show search bar</string>
+    <string name="show_searchbar_summary">Show the search bar on the home screen</string>
 </resources>

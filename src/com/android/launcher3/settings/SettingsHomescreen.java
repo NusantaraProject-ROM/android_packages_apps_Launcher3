@@ -74,7 +74,7 @@ public class SettingsHomescreen extends Activity
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
         if (Utilities.KEY_SHOW_SEARCHBAR.equals(key)) {
-            Utilities.restart(this);
+            Utilities.restart(getActivity());
         }
     }
 

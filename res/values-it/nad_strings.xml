@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2019 Paranoid Android
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
+    <!-- General -->
+    <string name="settings_title">Impostazioni</string>
+
+    <!-- Categories -->
+    <string name="home_category_title">Schermata Home</string>
+    <string name="home_category_summary">Gestisci il pannello Google Now e altro</string>
+    <string name="icons_category_title">Icone</string>
+    <string name="icons_category_summary">Gestisci forma icone e altro</string>
+    <string name="app_drawer_category_title">App drawer</string>
+    <string name="app_drawer_category_summary">Gestisci il tuo app drawer</string>
+    <string name="misc_category_title">Altro</string>
+    <string name="misc_category_summary">Altre impostazioni</string>
+
+    <!-- Trust apps -->
+    <string name="trust_apps_manager_name">App nascoste</string>
+    <string name="trust_apps_auth_manager">Sblocca per gestire app nascoste</string>
+    <string name="trust_apps_loading">Caricamento\u2026</string>
+    <string name="trust_apps_no_lock_error">Imposta il blocco schermo per limitare l\u2019accesso all\u2019app</string>
+    <string name="trust_apps_help">Aiuto</string>
+    <string name="trust_apps_info_hidden">Le app nascoste e i loro widget sono nascosti dal drawer</string>
+
+    <!-- Gestures -->
+    <string name="pref_homescreen_dt_gestures_title">Doppio tocco</string>
+    <string name="pref_homescreen_dt_gestures_summary">Gestisci il doppio tocco</string>
+    <string name="pref_homescreen_gestures_none">Nessuna azione</string>
+    <string name="pref_homescreen_gestures_sleep">Schermo spento</string>
+    <string name="pref_homescreen_gestures_torch">Torcia</string>
+    <string name="pref_homescreen_gestures_volume_panel">Pannello volume</string>
+    <string name="pref_homescreen_gestures_clear_notifications">Cancella notifiche</string>
+    <string name="pref_homescreen_gestures_screenshot">Screenshot</string>
+    <string name="pref_homescreen_gestures_notifications">Notifiche</string>
+    <string name="pref_homescreen_gestures_qspanel">Impostazioni rapide del menu a tendina</string>
+
+    <!-- SmartSpace -->
+    <string name="smartspace_preferences">Preferenze</string>
+    <string name="show_quickspace_title">At A Glance</string>
+    <string name="show_quickspace_summary">Visualizzare il widget \u0022a colpo d\u2019occhio\u0022 con informazioni del traffico o del prossimo appuntamento (se ci sono), oppure la sola data e le condizioni meteo</string>
+
+    <!-- Settings title to show Google Now at -1 screen on launcher. [CHAR LIMIT=50] -->
+    <string name="title_show_google_app">Mostra Google App</string>
+
+    <!-- Settings message explaining when the -1 screen is available on an LTR device. [CHAR LIMIT=100] -->
+    <string name="msg_minus_one_on_left">Quando scorri a sinistra nella schermata Home</string>
+
+    <!-- Settings message explaining when the -1 screen is available on an RTL device. [CHAR LIMIT=100] -->
+    <string name="msg_minus_one_on_right">Quando scorri a destra nella schermata Home</string>
+    <string name="pref_show_google_now_summary" translatable="false">@string/msg_minus_one_on_left</string>
+
+    <!-- Two line labels -->
+    <string name="two_line_labels">Consenti etichette app di due righe</string>
+
+    <!-- AppInfo -->
+    <string name="app_info_subtext" translatable="false">Swipe down to close app info.</string>
+    <string name="app_info_version_value" translatable="false">%1$s (%2$d)</string>
+    <string name="placeholder_string" translatable="false">Loading...</string> <!-- Used for preference height loading. -->
+    <string name="app_info_icon_pack" translatable="false">Icon pack</string>
+    <string name="app_info_icon_pack_none" translatable="false">None</string>
+    <string name="app_info_source" translatable="false">Source</string>
+    <string name="app_info_source_unknown" translatable="false">Unknown</string>
+    <string name="app_info_last_update" translatable="false">Last update</string>
+    <string name="app_info_version" translatable="false">Version</string>
+    <string name="app_info_more" translatable="false">More</string>
+
+    <!-- Preference default value -->
+    <string name="pref_value_default" translatable="false">Default</string>
+
+    <!-- Custom seekbar -->
+    <string name="custom_seekbar_value">Valore: <xliff:g id="v">%s</xliff:g></string>
+    <string name="custom_seekbar_default_value">predefinito</string>
+    <string name="custom_seekbar_default_value_to_set">Valore predefinito è: <xliff:g id="v">%s</xliff:g>\nTocco prolungato per resettare</string>
+    <string name="custom_seekbar_default_value_is_set">Resettato al valore predefinito</string>
+
+    <!-- Icon size -->
+    <string name="icon_size_title">Dimensione icone</string>
+
+    <!-- Scrim alpha in apps drawer -->
+    <string name="all_apps_background_opacity_title">Opacità sfondo</string>
+</resources>

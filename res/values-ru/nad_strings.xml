@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2019 Paranoid Android
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
+    <!-- General -->
+    <string name="settings_title">Настройки</string>
+
+    <!-- Categories -->
+    <string name="home_category_title">Главный экран</string>
+    <string name="home_category_summary">Управление страницей Google Now и многое другое</string>
+    <string name="icons_category_title">Иконки</string>
+    <string name="icons_category_summary">Изменение формы иконок и многое другое</string>
+    <string name="app_drawer_category_title">Меню приложений</string>
+    <string name="app_drawer_category_summary">Управление меню приложений</string>
+    <string name="misc_category_title">Разное</string>
+    <string name="misc_category_summary">Разные настройки</string>
+
+    <!-- Trust apps -->
+    <string name="trust_apps_manager_name">Скрытые приложения</string>
+    <string name="trust_apps_auth_manager">Разблокируйте для управления скрытыми приложениями</string>
+    <string name="trust_apps_loading">Загрузка\u2026</string>
+    <string name="trust_apps_no_lock_error">Настройте блокировку устройства, чтобы ограничить доступ к приложениям</string>
+    <string name="trust_apps_help">Помощь</string>
+    <string name="trust_apps_info_hidden">Скрытые приложения и их виджеты скрыты из меню приложений</string>
+
+    <!-- Gestures -->
+    <string name="pref_homescreen_dt_gestures_title">Двойное касание</string>
+    <string name="pref_homescreen_dt_gestures_summary">Управление двойным касанием на главном экране</string>
+    <string name="pref_homescreen_gestures_none">Нет действия</string>
+    <string name="pref_homescreen_gestures_sleep">Выключить экран</string>
+    <string name="pref_homescreen_gestures_torch">Фонарик</string>
+    <string name="pref_homescreen_gestures_volume_panel">Панель громкости</string>
+    <string name="pref_homescreen_gestures_clear_notifications">Очистить все уведомления</string>
+    <string name="pref_homescreen_gestures_screenshot">Скриншот</string>
+    <string name="pref_homescreen_gestures_notifications">Уведомления</string>
+    <string name="pref_homescreen_gestures_qspanel">Быстрые настройки (шторка)</string>
+
+    <!-- SmartSpace -->
+    <string name="smartspace_preferences">Опции</string>
+    <string name="show_quickspace_title">Виджет \u0022Самое Главное\u0022</string>
+    <string name="show_quickspace_summary">Отображать виджет \u0022At A Glance\u0022 с текущим днем недели, датой и информацией о погоде</string>
+
+    <!-- Settings title to show Google Now at -1 screen on launcher. [CHAR LIMIT=50] -->
+    <string name="title_show_google_app">Отображать страницу Google Now</string>
+
+    <!-- Settings message explaining when the -1 screen is available on an LTR device. [CHAR LIMIT=100] -->
+    <string name="msg_minus_one_on_left">Когда проводите слева на главном экране</string>
+
+    <!-- Settings message explaining when the -1 screen is available on an RTL device. [CHAR LIMIT=100] -->
+    <string name="msg_minus_one_on_right">Когда проводите справа на главном экране</string>
+    <string name="pref_show_google_now_summary" translatable="false">@string/msg_minus_one_on_left</string>
+
+    <!-- Two line labels -->
+    <string name="two_line_labels">Разрешить имена приложений в две строки</string>
+
+    <!-- AppInfo -->
+    <string name="app_info_subtext" translatable="false">Swipe down to close app info.</string>
+    <string name="app_info_version_value" translatable="false">%1$s (%2$d)</string>
+    <string name="placeholder_string" translatable="false">Loading...</string> <!-- Used for preference height loading. -->
+    <string name="app_info_icon_pack" translatable="false">Icon pack</string>
+    <string name="app_info_icon_pack_none" translatable="false">None</string>
+    <string name="app_info_source" translatable="false">Source</string>
+    <string name="app_info_source_unknown" translatable="false">Unknown</string>
+    <string name="app_info_last_update" translatable="false">Last update</string>
+    <string name="app_info_version" translatable="false">Version</string>
+    <string name="app_info_more" translatable="false">More</string>
+
+    <!-- Preference default value -->
+    <string name="pref_value_default" translatable="false">Default</string>
+
+    <!-- Custom seekbar -->
+    <string name="custom_seekbar_value">Значение: <xliff:g id="v">%s</xliff:g></string>
+    <string name="custom_seekbar_default_value">по умолчанию</string>
+    <string name="custom_seekbar_default_value_to_set">Значение по умолчанию: <xliff:g id="v">%s</xliff:g>\nДолгое касание для сброса</string>
+    <string name="custom_seekbar_default_value_is_set">Установлено значение по умолчанию</string>
+
+    <!-- Icon size -->
+    <string name="icon_size_title">Размер иконок</string>
+
+    <!-- Scrim alpha in apps drawer -->
+    <string name="all_apps_background_opacity_title">Прозрачность фона</string>
+</resources>

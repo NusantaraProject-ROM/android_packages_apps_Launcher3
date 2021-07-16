@@ -98,6 +98,8 @@ import java.util.regex.Pattern;
 
 import static com.android.launcher3.util.Executors.MODEL_EXECUTOR;
 
+import com.android.internal.util.nad.NadUtils;
+
 /**
  * Various utilities shared amongst the Launcher's classes.
  */
@@ -137,6 +139,7 @@ public final class Utilities {
     public static final String KEY_SHOW_ALT_QUICKSPACE = "pref_show_alt_quickspace";
     public static final String KEY_SHOW_QUICKSPACE_PSONALITY = "pref_quickspace_psonality";
     public static final String KEY_DOCK_SEARCH = "pref_dock_search";
+    public static final String KEY_MINUS_ONE = "pref_enable_minus_one";
     public static final String SEARCH_PACKAGE = "com.google.android.googlequicksearchbox";
 
     /**
@@ -808,9 +811,8 @@ public final class Utilities {
         return getPrefs(context).getBoolean(KEY_SHOW_QUICKSPACE_PSONALITY, true);
     }
 
-    public static boolean showQSB(Context context, Launcher launcher) {
-        LauncherAppState appState = LauncherAppState.getInstance(launcher);
-        if (!appState.isSearchAppAvailable()) {
+    public static boolean showQSB(Context context) {
+        if (!NadUtils.isPackageInstalled(context, SEARCH_PACKAGE)) {
             return false;
         }
         return isQSBEnabled(context);
@@ -819,5 +821,17 @@ public final class Utilities {
     public static boolean isQSBEnabled(Context context) {
         SharedPreferences prefs = getPrefs(context.getApplicationContext());
         return prefs.getBoolean(KEY_DOCK_SEARCH, true);
+    }
+
+    public static boolean showMinusOne(Context context) {
+        if (!NadUtils.isPackageInstalled(context, SEARCH_PACKAGE)) {
+            return false;
+        }
+        return isMinusOneEnabled(context);
+    }
+
+    public static boolean isMinusOneEnabled(Context context) {
+        SharedPreferences prefs = getPrefs(context.getApplicationContext());
+        return prefs.getBoolean(KEY_MINUS_ONE, true);
     }
 }

@@ -211,10 +211,10 @@ public class DeviceProfile {
         hotseatBarTopPaddingPx =
                 res.getDimensionPixelSize(R.dimen.dynamic_grid_hotseat_top_padding);
         hotseatBarBottomPaddingPx = (isTallDevice ? 0
-                : res.getDimensionPixelSize(Utilities.isQSBEnabled(context)
+                : res.getDimensionPixelSize(Utilities.showQSB(context)
                         ? R.dimen.dynamic_grid_hotseat_bottom_non_tall_padding_widget
                         : R.dimen.dynamic_grid_hotseat_bottom_non_tall_padding))
-                + res.getDimensionPixelSize(Utilities.isQSBEnabled(context)
+                + res.getDimensionPixelSize(Utilities.showQSB(context)
                         ? R.dimen.dynamic_grid_hotseat_bottom_padding_widget
                         : R.dimen.dynamic_grid_hotseat_bottom_padding);
         hotseatBarSidePaddingEndPx =
@@ -224,7 +224,7 @@ public class DeviceProfile {
         hotseatBarSizePx = ResourceUtils.pxFromDp(inv.iconSize, mInfo.metrics)
                 + (isVerticalBarLayout()
                 ? (hotseatBarSidePaddingStartPx + hotseatBarSidePaddingEndPx)
-                : (res.getDimensionPixelSize(Utilities.isQSBEnabled(context)
+                : (res.getDimensionPixelSize(Utilities.showQSB(context)
                         ? R.dimen.dynamic_grid_hotseat_extra_vertical_size_widget
                         : R.dimen.dynamic_grid_hotseat_extra_vertical_size)
                         + hotseatBarTopPaddingPx + hotseatBarBottomPaddingPx));

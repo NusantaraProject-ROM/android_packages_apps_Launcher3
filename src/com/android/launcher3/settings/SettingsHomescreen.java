@@ -18,8 +18,6 @@ package com.android.launcher3.settings;
 
 import static com.android.launcher3.Utilities.getDevicePrefs;
 
-import static org.nusantara.launcher.OverlayCallbackImpl.KEY_ENABLE_MINUS_ONE;
-
 import android.app.Activity;
 import android.app.DialogFragment;
 import android.app.Fragment;
@@ -49,6 +47,8 @@ import androidx.preference.PreferenceGroup.PreferencePositionCallback;
 import androidx.preference.PreferenceScreen;
 import androidx.preference.SwitchPreference;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.android.internal.util.nad.NadUtils;
 
 /**
  * Settings activity for Launcher. Currently implements the following setting: Allow rotation
@@ -185,10 +185,11 @@ public class SettingsHomescreen extends Activity
          */
         protected boolean initPreference(Preference preference) {
             switch (preference.getKey()) {
-                case KEY_ENABLE_MINUS_ONE:
+                case Utilities.KEY_MINUS_ONE:
                     mShowGoogleAppPref = preference;
                     updateIsGoogleAppEnabled();
                     return true;
+                case Utilities.KEY_DOCK_SEARCH:
             }
             return true;
         }

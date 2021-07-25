@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2019 Paranoid Android
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <!-- General -->
+    <string name="settings_title">Параметри</string>
+    <!-- Categories -->
+    <string name="home_category_title">Головний екран</string>
+    <string name="home_category_summary">Встановити панель Google Now та інше</string>
+    <string name="icons_category_title">Іконки</string>
+    <string name="icons_category_summary">Встановити форму іконок, розмір та багато іншого</string>
+    <string name="app_drawer_category_title">Меню програм</string>
+    <string name="app_drawer_category_summary">Налаштувати меню програм</string>
+    <string name="misc_category_title">Інші параметри</string>
+    <string name="misc_category_summary">Інші налаштування</string>
+    <!-- Trust apps -->
+    <string name="trust_apps_manager_name">Приховані програми</string>
+    <string name="trust_apps_auth_manager">Розблокуйте, щоб керувати прихованими додатками</string>
+    <string name="trust_apps_loading">Завантаження\u2026</string>
+    <string name="trust_apps_no_lock_error">Будь ласка, встановіть блокування екрану для обмеження доступу до додатків</string>
+    <string name="trust_apps_help">Допомога</string>
+    <string name="trust_apps_info_hidden">Приховані додатки і їх віджети приховані з меню</string>
+    <!-- Gestures -->
+    <string name="pref_homescreen_dt_gestures_title">Подвійне натискання</string>
+    <string name="pref_homescreen_dt_gestures_summary">Подвійне натискання</string>
+    <string name="pref_homescreen_gestures_none">Відсутньо</string>
+    <string name="pref_homescreen_gestures_sleep">Екран вимкнено</string>
+    <string name="pref_homescreen_gestures_torch">Ліхтарик</string>
+    <string name="pref_homescreen_gestures_volume_panel">Панель гучності</string>
+    <string name="pref_homescreen_gestures_clear_notifications">Очистити сповіщення</string>
+    <string name="pref_homescreen_gestures_screenshot">Скріншот</string>
+    <string name="pref_homescreen_gestures_notifications">Повідомлення</string>
+    <string name="pref_homescreen_gestures_qspanel">Панель швидких налаштувань</string>
+    <!-- SmartSpace -->
+    <string name="smartspace_preferences">Параметри</string>
+    <string name="show_quickspace_title">Найголовніше</string>
+    <string name="show_quickspace_summary">Відображати в верхній частині Домашнього екрану</string>
+    <!-- Settings title to show Google Now at -1 screen on launcher. [CHAR LIMIT=50] -->
+    <string name="title_show_google_app">Показувати програму Google</string>
+    <!-- Settings message explaining when the -1 screen is available on an LTR device. [CHAR LIMIT=100] -->
+    <string name="msg_minus_one_on_left">Під час свайпу вліво від головного екрану</string>
+    <!-- Settings message explaining when the -1 screen is available on an RTL device. [CHAR LIMIT=100] -->
+    <string name="msg_minus_one_on_right">Під час свайпу вправо від головного екрану</string>
+    <!-- Two line labels -->
+    <string name="two_line_labels">Дозволити дві позначки рядків на робочому столі</string>
+    <!-- AppInfo -->
+    <!-- Used for preference height loading. -->
+    <!-- Preference default value -->
+    <!-- Custom seekbar -->
+    <string name="custom_seekbar_value">Значення: <xliff:g id="v">%s</xliff:g></string>
+    <string name="custom_seekbar_default_value">за замовчанням</string>
+    <string name="custom_seekbar_default_value_to_set">Значення за замовчанням: <xliff:g id="v">%s</xliff:g>\nДовге натискання для встановлення</string>
+    <string name="custom_seekbar_default_value_is_set">Значення за замовчуванням встановлено</string>
+    <!-- Icon size -->
+    <string name="icon_size_title">Розмір значків</string>
+    <!-- Scrim alpha in apps drawer -->
+    <string name="all_apps_background_opacity_title">Прозорість фону</string>
+</resources>

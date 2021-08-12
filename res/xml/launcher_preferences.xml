@@ -69,7 +69,8 @@
         android:persistent="false"
         android:title="@string/suggestion_pref_screen_title"
         android:key="pref_suggestions"
-        android:summary="@string/suggestion_pref_screen_desc">
+        android:summary="@string/suggestion_pref_screen_desc"
+        android:icon="@drawable/suggestion_preference">
         <intent android:action="android.settings.ACTION_CONTENT_SUGGESTIONS_SETTINGS" />
     </androidx.preference.PreferenceScreen>
 

@@ -19,5 +19,6 @@
 -->
 <resources>
 
+    <color name="card_bg">#10ffffff</color>
     <color name="app_info_bottom_sheet_bg">#000000</color>
 </resources>

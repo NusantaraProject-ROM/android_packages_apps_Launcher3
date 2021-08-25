@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2019 Paranoid Android
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <!-- General -->
+    <string name="settings_title">Einstellungen</string>
+    <!-- Categories -->
+    <string name="home_category_title">Startseite</string>
+    <string name="home_category_summary">Google Now und mehr anpassen</string>
+    <string name="icons_category_title">Symbole</string>
+    <string name="icons_category_summary">Symbolform und mehr einstellen</string>
+    <string name="app_drawer_category_title">App-Übersicht</string>
+    <string name="app_drawer_category_summary">App-Übersicht anpassen</string>
+    <string name="misc_category_title">Sonstiges</string>
+    <string name="misc_category_summary">Weitere Optionen</string>
+    <!-- Trust apps -->
+    <string name="trust_apps_manager_name">Versteckte Apps</string>
+    <string name="trust_apps_auth_manager">Entsperren um versteckte Apps zu verwalten</string>
+    <string name="trust_apps_loading">Wird geladen\u2026</string>
+    <string name="trust_apps_no_lock_error">Bitte richten Sie einen sicheren Sperrbildschirm ein, um den Zugriff auf die Apps zu beschränken</string>
+    <string name="trust_apps_help">Hilfe</string>
+    <string name="trust_apps_info_hidden">Versteckte Apps und ihre Widgets werden in der App-Übersicht nicht angezeigt</string>
+    <!-- Gestures -->
+    <string name="pref_homescreen_dt_gestures_title">Doppeltippen</string>
+    <string name="pref_homescreen_dt_gestures_summary">Double tap feature</string>
+    <string name="pref_homescreen_gestures_none">Nichts</string>
+    <string name="pref_homescreen_gestures_sleep">Bildschirm aus</string>
+    <string name="pref_homescreen_gestures_torch">Taschenlampe</string>
+    <string name="pref_homescreen_gestures_volume_panel">Lautstärkeregler</string>
+    <string name="pref_homescreen_gestures_clear_notifications">Alle Benachrichtigungen löschen</string>
+    <string name="pref_homescreen_gestures_screenshot">Bildschirmfoto</string>
+    <string name="pref_homescreen_gestures_notifications">Benachrichtigungen</string>
+    <string name="pref_homescreen_gestures_qspanel">Schnelleinstellungsleiste</string>
+    <!-- SmartSpace -->
+    <string name="smartspace_preferences">Einstellungen</string>
+    <string name="show_quickspace_title">At A Glance</string>
+    <string name="show_quickspace_summary">Am oberen Rand des Startbildschirms anzeigen</string>
+    <!-- Settings title to show Google Now at -1 screen on launcher. [CHAR LIMIT=50] -->
+    <string name="title_show_google_app">Google-App anzeigen</string>
+    <!-- Settings message explaining when the -1 screen is available on an LTR device. [CHAR LIMIT=100] -->
+    <string name="msg_minus_one_on_left">Wenn Sie vom Hauptstartbildschirm aus nach links wischen</string>
+    <!-- Settings message explaining when the -1 screen is available on an RTL device. [CHAR LIMIT=100] -->
+    <string name="msg_minus_one_on_right">Wenn Sie vom Hauptstartbildschirm aus nach rechts wischen</string>
+    <!-- Two line labels -->
+    <string name="two_line_labels">Zweireihige Symbolbeschriftungen auf dem Startbildschirm anzeigen</string>
+    <!-- AppInfo -->
+    <!-- Used for preference height loading. -->
+    <!-- Preference default value -->
+    <!-- Custom seekbar -->
+    <string name="custom_seekbar_value">Wert: <xliff:g id="v">%s</xliff:g></string>
+    <string name="custom_seekbar_default_value">standardmäßig</string>
+    <string name="custom_seekbar_default_value_to_set">Standardwert: <xliff:g id="v">%s</xliff:g>\nZum Einstellen lange gedrückt halten</string>
+    <string name="custom_seekbar_default_value_is_set">Standardwert ist gesetzt</string>
+    <!-- Icon size -->
+    <string name="icon_size_title">Symbolgröße</string>
+    <!-- Scrim alpha in apps drawer -->
+    <string name="all_apps_background_opacity_title">Hintergrunddeckkraft</string>
+</resources>

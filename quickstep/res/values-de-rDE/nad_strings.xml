@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="recents_kill_app">Завяршыць</string>
+    <string name="recents_kill_app">Anwendung beenden</string>
 </resources>

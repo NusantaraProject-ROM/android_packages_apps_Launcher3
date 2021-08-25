@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2019 Paranoid Android
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <!-- General -->
+    <string name="settings_title">設定</string>
+    <!-- Categories -->
+    <string name="home_category_title">主畫面</string>
+    <string name="home_category_summary">設定 Google 即時資訊和更多</string>
+    <string name="icons_category_title">圖示</string>
+    <string name="icons_category_summary">設定圖示形狀和更多</string>
+    <string name="app_drawer_category_title">應用程式清單</string>
+    <string name="app_drawer_category_summary">自定義你的應用程式清單</string>
+    <string name="misc_category_title">其他</string>
+    <string name="misc_category_summary">其他選項</string>
+    <!-- Trust apps -->
+    <string name="trust_apps_manager_name">隱藏的應用程式</string>
+    <string name="trust_apps_auth_manager">解鎖以管理隱藏的應用程式</string>
+    <string name="trust_apps_loading">載入中\u2026</string>
+    <string name="trust_apps_no_lock_error">請設定安全鎖定畫面以限制應用程式存取權限</string>
+    <string name="trust_apps_help">幫助</string>
+    <string name="trust_apps_info_hidden">隱藏的應用程式及其小工具隱藏在清單中</string>
+    <!-- Gestures -->
+    <string name="pref_homescreen_dt_gestures_title">雙擊</string>
+    <string name="pref_homescreen_dt_gestures_summary">雙擊手勢</string>
+    <string name="pref_homescreen_gestures_none">無</string>
+    <string name="pref_homescreen_gestures_sleep">關閉螢幕</string>
+    <string name="pref_homescreen_gestures_torch">手電筒</string>
+    <string name="pref_homescreen_gestures_volume_panel">音量面板</string>
+    <string name="pref_homescreen_gestures_clear_notifications">清除通知</string>
+    <string name="pref_homescreen_gestures_screenshot">螢幕截圖</string>
+    <string name="pref_homescreen_gestures_notifications">通知</string>
+    <string name="pref_homescreen_gestures_qspanel">快速設定面板</string>
+    <!-- SmartSpace -->
+    <string name="smartspace_preferences">偏好設定</string>
+    <string name="show_quickspace_title">快速查看</string>
+    <string name="show_quickspace_summary">在主屏幕的頂部顯示</string>
+    <!-- Settings title to show Google Now at -1 screen on launcher. [CHAR LIMIT=50] -->
+    <string name="title_show_google_app">顯示 Google 應用</string>
+    <!-- Settings message explaining when the -1 screen is available on an LTR device. [CHAR LIMIT=100] -->
+    <string name="msg_minus_one_on_left">從主屏幕向左滑動時</string>
+    <!-- Settings message explaining when the -1 screen is available on an RTL device. [CHAR LIMIT=100] -->
+    <string name="msg_minus_one_on_right">從主屏幕向右滑動時</string>
+    <!-- Two line labels -->
+    <string name="two_line_labels">允許桌面展示兩行標籤</string>
+    <!-- AppInfo -->
+    <!-- Used for preference height loading. -->
+    <!-- Preference default value -->
+    <!-- Custom seekbar -->
+    <string name="custom_seekbar_value">值: <xliff:g id="v">%s</xliff:g></string>
+    <string name="custom_seekbar_default_value">默認</string>
+    <string name="custom_seekbar_default_value_to_set">默認值： <xliff:g id="v">%s</xliff:g>\n長按以設置</string>
+    <string name="custom_seekbar_default_value_is_set">已設為默認值</string>
+    <!-- Icon size -->
+    <string name="icon_size_title">圖標尺寸</string>
+    <!-- Scrim alpha in apps drawer -->
+    <string name="all_apps_background_opacity_title">背景透明</string>
+</resources>

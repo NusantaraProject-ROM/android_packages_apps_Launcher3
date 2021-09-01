@@ -61,7 +61,6 @@ public class SettingsHomescreen extends Activity
     public static final String EXTRA_SHOW_FRAGMENT_ARGS = ":settings:show_fragment_args";
     private static final int DELAY_HIGHLIGHT_DURATION_MILLIS = 600;
     public static final String SAVE_HIGHLIGHTED_KEY = "android:preference_highlighted";
-    public static final String KEY_HOMESCREEN_DT_GESTURES = "pref_homescreen_dt_gestures";
 
     @Override
     protected void onCreate(final Bundle bundle) {
@@ -124,8 +123,6 @@ public class SettingsHomescreen extends Activity
      */
     public static class HomescreenSettingsFragment extends PreferenceFragment {
 
-        private Context mContext;
-
         private String mHighLightKey;
         private boolean mPreferenceHighlighted = false;
 
@@ -136,8 +133,6 @@ public class SettingsHomescreen extends Activity
         @Override
         public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
             final Bundle args = getArguments();
-
-            mContext = getActivity();
 
             if (savedInstanceState != null) {
                 mPreferenceHighlighted = savedInstanceState.getBoolean(SAVE_HIGHLIGHTED_KEY);
@@ -153,20 +148,6 @@ public class SettingsHomescreen extends Activity
                     screen.removePreference(preference);
                 }
             }
-
-            final ListPreference doubletabAction = (ListPreference) findPreference(KEY_HOMESCREEN_DT_GESTURES);
-            doubletabAction.setValue(getDevicePrefs(mContext).getString(KEY_HOMESCREEN_DT_GESTURES, "0"));
-            doubletabAction.setSummary(doubletabAction.getEntry());
-            doubletabAction.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
-                public boolean onPreferenceChange(Preference preference, Object newValue) {
-                    String dtGestureValue = (String) newValue;
-                    getDevicePrefs(mContext).edit().putString(KEY_HOMESCREEN_DT_GESTURES, dtGestureValue).commit();
-                    doubletabAction.setValue(dtGestureValue);
-                    doubletabAction.setSummary(doubletabAction.getEntry());
-                    Utilities.restart(mContext);
-                    return true;
-                }
-            });
         }
 
         @Override
@@ -190,6 +171,21 @@ public class SettingsHomescreen extends Activity
                     updateIsGoogleAppEnabled();
                     return true;
                 case Utilities.KEY_DOCK_SEARCH:
+                case Utilities.KEY_HOMESCREEN_DT_GESTURES:
+                    final ListPreference doubletabAction = (ListPreference) findPreference(Utilities.KEY_HOMESCREEN_DT_GESTURES);
+                    doubletabAction.setValue(getDevicePrefs(getActivity()).getString(Utilities.KEY_HOMESCREEN_DT_GESTURES, "0"));
+                    doubletabAction.setSummary(doubletabAction.getEntry());
+                    doubletabAction.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
+                        public boolean onPreferenceChange(Preference preference, Object newValue) {
+                            String dtGestureValue = (String) newValue;
+                            getDevicePrefs(getActivity()).edit().putString(Utilities.KEY_HOMESCREEN_DT_GESTURES, dtGestureValue).commit();
+                            doubletabAction.setValue(dtGestureValue);
+                            doubletabAction.setSummary(doubletabAction.getEntry());
+                            LauncherAppState.getInstanceNoCreate().setNeedsRestart();
+                            return true;
+                        }
+                    });
+                    return true;
             }
             return true;
         }

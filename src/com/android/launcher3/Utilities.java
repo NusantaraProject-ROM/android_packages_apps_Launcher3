@@ -141,6 +141,7 @@ public final class Utilities {
     public static final String KEY_DOCK_SEARCH = "pref_dock_search";
     public static final String KEY_MINUS_ONE = "pref_enable_minus_one";
     public static final String SEARCH_PACKAGE = "com.google.android.googlequicksearchbox";
+    public static final String KEY_HOMESCREEN_DT_GESTURES = "pref_homescreen_dt_gestures";
 
     /**
      * Set on a motion event dispatched from the nav bar. See {@link MotionEvent#setEdgeFlags(int)}.

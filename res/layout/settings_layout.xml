@@ -2,61 +2,60 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:minHeight="160dp"
-    android:layout_marginStart="15dp"
-    android:layout_marginEnd="15dp"
-    android:layout_marginBottom="5dp"
+    android:minHeight="150dp"
+    android:layout_marginStart="18dp"
+    android:layout_marginEnd="18dp"
+    android:layout_marginTop="18dp"
     android:background="@drawable/bg_card"
     android:gravity="center">
 
-	<LinearLayout
-		android:layout_gravity="center"
-		android:gravity="center"
-		android:padding="8dp"
-		android:orientation="vertical"
-		android:layout_height="wrap_content"
-		android:layout_width="match_parent"
-		android:layout_centerInParent="true">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="8dp">
 
-		<LinearLayout
-			android:id="@+id/icon_frame"
-			android:layout_width="64dp"
-			android:layout_height="64dp"
-			android:background="@drawable/round"
-			android:layout_gravity="top|center"
-			android:layout_centerHorizontal="true">
+        <LinearLayout
+            android:id="@+id/icon_frame"
+            android:layout_width="54dp"
+            android:layout_height="54dp"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
+            android:background="@drawable/round">
 
-			<ImageView
-				android:id="@android:id/icon"
-                android:tint="@*android:color/accent_device_default_light"
-				android:layout_width="match_parent"
-				android:layout_height="match_parent"
-				android:scaleType="center"/>
+            <ImageView
+                android:id="@android:id/icon"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="center"
+                android:tint="@*android:color/accent_device_default_light" />
 
-		</LinearLayout>
+        </LinearLayout>
 
-		<TextView
-                android:id="@android:id/title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:singleLine="true"
-                android:textColor="?android:textColorPrimary"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:ellipsize="marquee"
-                android:paddingTop="2dp"
-                android:fadingEdge="horizontal" />
+        <TextView
+            android:id="@android:id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="marquee"
+            android:fadingEdge="horizontal"
+            android:paddingTop="2dp"
+            android:singleLine="true"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="?android:textColorPrimary" />
 
-		<TextView
-                android:id="@android:id/summary"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:singleLine="true"
-                android:textColor="?android:textColorSecondary"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:ellipsize="marquee"
-                android:paddingTop="2dp"
-                android:fadingEdge="horizontal" />
+        <TextView
+            android:id="@android:id/summary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="marquee"
+            android:fadingEdge="horizontal"
+            android:singleLine="true"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="?android:textColorSecondary" />
 
-	</LinearLayout>
+    </LinearLayout>
 
-</RelativeLayout> 
+</RelativeLayout>

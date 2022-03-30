@@ -104,4 +104,8 @@
     <!-- Force stop shortcut -->
     <string name="recent_task_force_stop_app">Force stop</string>
     <string name="recents_app_force_stopped">App force stopped</string>
+
+    <!-- All apps themed icons -->
+    <string name="pref_themed_icons_title">All apps themed icons</string>
+    <string name="pref_themed_icons_summary">Toggle to switch between homescreen dock and all apps themed icons</string>
 </resources>

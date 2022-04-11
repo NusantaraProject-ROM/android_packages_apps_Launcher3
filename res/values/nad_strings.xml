@@ -135,4 +135,7 @@
     <string name="pref_homescreen_gestures_screenshot">Screenshot</string>
     <string name="pref_homescreen_gestures_notifications">Notifications</string>
     <string name="pref_homescreen_gestures_qspanel">QS panel</string>
+
+    <string name="pref_allow_phone_taskbar">Use taskbar</string>
+    <string name="pref_allow_phone_taskbar_desc">For opening and switching apps anywhere</string>
 </resources>

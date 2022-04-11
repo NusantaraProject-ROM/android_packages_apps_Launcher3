@@ -70,6 +70,11 @@
             android:summary="@string/summary_desktop_labels"
             android:defaultValue="true"
             android:persistent="true" />
+
+        <SwitchPreference
+            android:key="pref_allow_phone_taskbar"
+            android:title="@string/pref_allow_phone_taskbar"
+            android:summary="@string/pref_allow_phone_taskbar_desc" />
     </PreferenceCategory>
 
     <PreferenceCategory
